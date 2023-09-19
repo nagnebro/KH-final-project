@@ -1,0 +1,11 @@
+
+k	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾¢™úÿÿÿÿ
+n
+java:S3753"XAdd a call to "setComplete()" on the SessionStatus object in a "@RequestMapping" method.(Ñõ¼
+V	java:S125P"<This block of commented-out lines of code should be removed.(ğğöøÿÿÿÿ
+Q	java:S125U"<This block of commented-out lines of code should be removed.(¼Û™
+Q	java:S125X"<This block of commented-out lines of code should be removed.(ÂÖ®Í
+S	java:S106Z"9Replace this use of System.out or System.err by a logger.(—…¿¡ÿÿÿÿÿ
+N	java:S106`"9Replace this use of System.out or System.err by a logger.(ÿìİÔ
+Q	java:S125c"<This block of commented-out lines of code should be removed.(¡’©ô
+S	java:S106g"9Replace this use of System.out or System.err by a logger.(ÚÀŞ˜úÿÿÿÿ

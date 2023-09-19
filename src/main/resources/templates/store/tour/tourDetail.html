@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/store/tour/tour.css">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="next">
+    <header th:include="/header.html :: header"></header>
+
+    <div class="modal_container map_container">
+        <div class="modal_form map_modal">
+            <button class="modal_close_btn">닫기</button>
+            <div class="modal_wrap">
+                <div class="modal_head">
+                    <strong class="modal_title">지 도</strong>
+                </div>
+                <div id="container" class="view_map modal_body">
+                    <div id="mapWrapper" style="width:100%;height:100%;position:relative;">
+                        <div id="map" style="width:100%;height:100%"></div> <!-- 지도를 표시할 div 입니다 -->
+                        <input type="button" id="btnRoadview" onclick="toggleMap(false)" title="로드뷰 보기" value="로드뷰">
+                    </div>
+                    <div id="rvWrapper" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+                        <div id="roadview" style="height:100%"></div> <!-- 로드뷰를 표시할 div 입니다 -->
+                        <input type="button" id="btnMap" onclick="toggleMap(true)" title="지도 보기" value="지도">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:if="${session.user != null}"></th:block>
+
+
+    <div class="tour_detail_container">
+        <div class="page_title">
+            <h2>관광 상세 정보</h2>
+
+        </div>
+        <div class="detail_info_container">
+            <div class="detail_info_title">
+                <h4 th:text="${detailCommon.title}"></h4>
+                <button class="map_btn">지도 보기</button>
+                <input type="hidden" name="map_x" th:value="${detailCommon.mapX}">
+                <input type="hidden" name="map_y" th:value="${detailCommon.mapY}">
+            </div>
+            <div class="detail_info_top">
+                <div class="detail_info_img">
+                    <img th:if="${detailCommon.firstImage != ''}" th:src="${detailCommon.firstImage}">
+                    <img th:if="${detailCommon.firstImage == ''}" src="/img/store/tour/noimage.png">
+                </div>
+                <div class="info_table_wrap">
+                    <div class="detail_info_table">
+                        <th:block th:if="${detailCommon.zipCode != ''}">
+                            <div class="detail_info_row">
+                                <div class="detail_info_col">
+                                    우편번호
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailCommon.zipCode}">
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${detailCommon.addr1 != ''}">
+                            <div class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주소
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailCommon.addr1}">
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${detailCommon.tel != ''}">
+                            <div class="detail_info_row">
+                                <div class="detail_info_col">
+                                    전화번호
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailCommon.tel}">
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${detailCommon.homePage != ''}">
+                            <div class="detail_info_row">
+                                <div class="detail_info_col">
+                                    홈페이지
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailCommon.homePage}">
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${contentTypeId == '12'}">
+                            <div th:if="${detailIntro.chkPet != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    애완동물동반가능정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.chkPet}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.expAgeRange != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    체험가능연령
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.expAgeRange}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.expGuide != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    체험안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.expGuide}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenter != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의및안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenter}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.openDate != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    개장일
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.openDate}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parking != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parking}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.restDate != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    쉬는날
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.restDate}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useSeason != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용시기
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useSeason}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useTime}">
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${contentTypeId == '14'}">
+                            <div th:if="${detailIntro.chkPetCulture != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    애완동물동반가능정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.chkPetCulture}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.discountInfo != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    할인정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.discountInfo}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterCulture != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의및안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterCulture}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingCulture != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingCulture}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingFee != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차요금
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingFee}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.restDateCulture != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    쉬는날
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.restDateCulture}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useFee != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용요금
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useFee}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useTimeCulture != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useTimeCulture}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.spendTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    관람소요시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.spendTime}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '15'}">
+                            <div th:if="${detailIntro.ageLimit != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    관람가능연령
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.ageLimit}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.bookingPlace != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    예매처
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.bookingPlace}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.discountInfoFestival != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    할인정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.discountInfoFestival}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.eventStartDate != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    행사시작일
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.eventStartDate}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.eventEndDate != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    행사종료일
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.eventEndDate}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.eventHomePage != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    홈페이지
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.eventHomePage}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.eventPlace != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    행사장소
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.eventPlace}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.placeInfo != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    위치안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.placeInfo}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.playTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    공연시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.playTime}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.program != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    행사프로그램
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.program}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.spendTimeFestival != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    관람소요시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.spendTimeFestival}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.sponsor2 != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주관사
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.sponsor2}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.sponsor2tel != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주관사연락처
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.sponsor2tel}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useTimeFestival != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용요금
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useTimeFestival}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '25'}">
+                            <div th:if="${detailIntro.distance != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    코스 총 거리
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.distance}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterTourcourse != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의 및 안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterTourcourse}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.schedule != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    코스일정
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.schedule}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.takeTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    코스 총 소요시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.takeTime}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '28'}">
+                            <!--<div th:if="${detailIntro.chkCreditCardLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    신용카드 가능정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.chkCreditCardLeports}">
+                                </div>
+                            </div>-->
+                            <div th:if="${detailIntro.chkPetLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    애완동물동반 가능정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.chkPetLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의 및 안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.openPeriod != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    개장기간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.openPeriod}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingFeeLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차요금
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingFeeLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.reservation != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    예약안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.reservation}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.restDateLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    쉬는날
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.restDateLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useFeeLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    입장료
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useFeeLeports}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.useTimeLeports != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    이용시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.useTimeLeports}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '32'}">
+                            <div th:if="${detailIntro.checkInTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    입실시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.checkInTime}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.checkOutTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    퇴실시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.checkOutTime}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterLodging != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의 및 안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterLodging}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingLodging != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingLodging}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.pickup != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    픽업서비스
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.pickup}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.roomCount != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    객실수
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.roomCount}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.reservationLodging != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    예약안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.reservationLodging}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.reservationUrl != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    예약안내 홈페이지
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.reservationUrl}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.barbecue != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    바베큐장 여부
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.barbecue}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.subFacility != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    부대시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.subFacility}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.refundRegulation != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    환불규정
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.refundRegulation}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '38'}">
+                            <div th:if="${detailIntro.chkPetShopping != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    애완동물동반 가능정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.chkPetShopping}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.cultureCenter != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문화센터 바로가기
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.cultureCenter}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.fairDay != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    영업일
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.fairDay}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterShopping != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의 및 안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterShopping}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.openTime != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    영업시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.openTime}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingShopping != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingShopping}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.restDateShopping != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    쉬는날
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.restDateShopping}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.saleItem != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    판매품목
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.saleItem}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.saleItemCost != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    판매품목별 가격
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.saleItemCost}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.shopGuide != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    매장안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.shopGuide}">
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${contentTypeId == '39'}">
+                            <div th:if="${detailIntro.discountInfoFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    할인정보
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.discountInfoFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.firstMenu != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    대표메뉴
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.firstMenu}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.infoCenterFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    문의 및 안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.infoCenterFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.kidsFacility != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    어린이 시설 여부
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.kidsFacility}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.openTimeFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    영업시간
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.openTimeFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.packing != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    포장가능
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.packing}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.parkingFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    주차시설
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.parkingFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.reservationFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    예약안내
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.reservationFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.restDateFood != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    쉬는날
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.restDateFood}">
+                                </div>
+                            </div>
+                            <div th:if="${detailIntro.treatMenu != ''}" class="detail_info_row">
+                                <div class="detail_info_col">
+                                    취급메뉴
+                                </div>
+                                <div class="detail_info_col" th:utext="${detailIntro.treatMenu}">
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <div class="detail_info_bottom">
+                <strong>개요</strong>
+                <hr/>
+                <div class="detail_info_text" th:utext="${detailCommon.overView}">
+
+                </div>
+            </div>
+            <div class="detail_info_container" id="blog_search">
+                <h6>블로그 검색 결과</h6>
+                <hr/>
+            </div>
+            <div class="more_search">
+                블로그 더보기
+            </div>
+        </div>
+    </div>
+    <footer th:include="/footer.html :: footer"></footer>
+</div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94f52a310280385a36aa239057a986bb"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/store/tour/tourDetail.js"></script>
+</body>
+</html>

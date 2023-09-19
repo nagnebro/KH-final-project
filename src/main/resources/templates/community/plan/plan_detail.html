@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>plan_Detail.html</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/community/plan/plan_detail.css">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="next">
+    <header th:include="header.html :: header"></header>
+    <div class="m">
+        <!-- 메인부분 코드 작성 -->
+
+        <div style="flex: 1 1 0%;">
+            <div class="_next">
+                <div class="container">
+                    <div class="kakaomaps">
+                        <div class="kakaomaps_in">
+                            <div class="map_wrap">
+                                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="content">
+                        <div class="article">
+                            <div class="art1">
+                                <div class="art1_div_btn">
+
+
+                                    <div th:if="${session.user == null}" class="art1_div_subject" th:text="${plan.pbTitle}"></div>
+                                    <th:block th:if="${session.user != null}">
+                                        <!--<div class="art1_div_subject" th:text="${plan.pbTitle}"></div>-->
+                                        <input class="art1_div_subject" th:value="${plan.pbTitle}" />
+                                        <span class="art1_div_menu">
+                            <div class="complete_delete_btn" th:if="${plan.user.userNumber == session.user.userNumber}">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                     viewBox="0 0 448 512">
+                                    <style>svg {
+                                        fill: #df5368
+                                    }</style>
+                                    <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
+                                </svg>
+                            </div>
+                                    </span>
+                                    </th:block>
+                                </div>
+                            </div>
+
+
+                            <div class="art1_1">
+
+                                <div class="sdf_form_form">
+                                    <div class="select_date_input">
+
+                                        <div class="select_date_box">
+                                            <h5>떠나는 날</h5>
+                                            <th:block th:if="${session.user != null}">
+                                                <input th:if="${plan.user.userNumber == session.user.userNumber}"
+                                                       type="date" data-placeholder="출발일" id="select_start_date"
+                                                       th:value="${plan.pbStartDate}">
+                                                <input th:if="${plan.user.userNumber != session.user.userNumber}"
+                                                       type="date" data-placeholder="출발일" id="select_start_date"
+                                                       th:value="${plan.pbStartDate}" readonly>
+                                            </th:block>
+                                            <th:block th:if="${session.user == null}">
+                                                <input type="date" data-placeholder="출발일" id="select_start_date"
+                                                       th:value="${plan.pbStartDate}" readonly>
+                                            </th:block>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="select_date_input">
+
+                                        <div class="select_date_box">
+                                            <h5>돌아오는 날</h5>
+                                            <th:block th:if="${session.user != null}">
+                                                <input th:if="${plan.user.userNumber == session.user.userNumber}"
+                                                       type="date" data-placeholder="도착일" id="select_end_date"
+                                                       th:value="${plan.pbEndDate}">
+                                                <input th:if="${plan.user.userNumber != session.user.userNumber}"
+                                                       type="date" data-placeholder="도착일" id="select_end_date"
+                                                       th:value="${plan.pbEndDate}" readonly>
+                                            </th:block>
+                                            <th:block th:if="${session.user == null}">
+                                                <input type="date" data-placeholder="도착일" id="select_end_date"
+                                                       th:value="${plan.pbEndDate}" readonly>
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="article2"> <!-- 여기서부터 아래 2번째 상자 -->
+                            <div class="article_sc"><!-- 2번째 상자 안에서 2가지로 쪼개짐 -->
+                                <div class="article_sc_in"> <!-- 줄마다 쪼개짐 -->
+                                    <div class="sc_des">  <!-- 2-1 상자 -->
+                                        <div class="sc_des_div">  <!-- 첫번째줄 -->
+                                            <div class="sc_des_div_in"> <!-- 첫번째 줄 안에서 1칸 -->
+                                                <div class="sc_des_intext">
+                                                    <div class="sc_des_div2">
+                                                        <div class="sc_des_div2_in">
+                                                            <div class="sc_des_schIcon">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                                     fill="#0064DE"
+                                                                     viewBox="0 0 384 512" color="#0064DE">
+                                                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                                    <style>svg {
+                                                                        fill: #0064DE;
+                                                                    }</style>
+                                                                    <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+                                                                          fill="#0064DE"></path>
+                                                                </svg>
+
+
+                                                            </div>
+
+                                                            <!-- <span class="sc_des_div2_span">어느 지역으로 떠나시나요? </span> -->
+
+                                                            <th:block th:if="${session.user != null}">
+                                                                <!--유저가 로그인을 했으면-->
+                                                                <select th:if="${plan.user.userNumber == session.user.userNumber}"
+                                                                        class="form-select_place"
+                                                                        aria-label="Default select example">
+                                                                    <option selected>어느 지역으로 떠나시나요?</option>
+                                                                    <!--로그인한 유저와 작성한 유저가 같으면 드롭다운 생성-->
+                                                                    <option th:selected="${plan.pbRegion == '1'}" value="1">서울</option>
+                                                                    <option th:selected="${plan.pbRegion == '2'}" value="2">경기도</option>
+                                                                    <option th:selected="${plan.pbRegion == '3'}" value="3">강원도</option>
+                                                                    <option th:selected="${plan.pbRegion == '4'}" value="4">충청도</option>
+                                                                    <option th:selected="${plan.pbRegion == '5'}" value="5">경상도</option>
+                                                                    <option th:selected="${plan.pbRegion == '6'}" value="6">전라도</option>
+                                                                    <option th:selected="${plan.pbRegion == '7'}" value="7">제주도</option>
+                                                                    <option th:selected="${plan.pbRegion == '8'}" value="8">기타</option>
+                                                                </select>
+                                                                <th:block
+                                                                        th:if="${plan.user.userNumber != session.user.userNumber}">
+                                                                    <span th:if="${plan.pbRegion == '1'}"
+                                                                          th:text="서울"></span>
+                                                                    <!--로그인한 유저와 작성한 유저가 다르면 선택한 장소만 출력-->
+                                                                    <span th:if="${plan.pbRegion == '2'}"
+                                                                          th:text="경기도"></span>
+                                                                    <span th:if="${plan.pbRegion == '3'}"
+                                                                          th:text="강원도"></span>
+                                                                    <span th:if="${plan.pbRegion == '4'}"
+                                                                          th:text="충청도"></span>
+                                                                    <span th:if="${plan.pbRegion == '5'}"
+                                                                          th:text="경상도"></span>
+                                                                    <span th:if="${plan.pbRegion == '6'}"
+                                                                          th:text="전라도"></span>
+                                                                    <span th:if="${plan.pbRegion == '7'}"
+                                                                          th:text="제주도"></span>
+                                                                    <span th:if="${plan.pbRegion == '8'}"
+                                                                          th:text="기타"></span>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <th:block
+                                                                    th:if="${session.user == null}">
+                                                                <span th:if="${plan.pbRegion == '1'}"
+                                                                      th:text="서울"></span>
+                                                                <!--로그인한 유저와 작성한 유저가 다르면 선택한 장소만 출력-->
+                                                                <span th:if="${plan.pbRegion == '2'}"
+                                                                      th:text="경기도"></span>
+                                                                <span th:if="${plan.pbRegion == '3'}"
+                                                                      th:text="강원도"></span>
+                                                                <span th:if="${plan.pbRegion == '4'}"
+                                                                      th:text="충청도"></span>
+                                                                <span th:if="${plan.pbRegion == '5'}"
+                                                                      th:text="경상도"></span>
+                                                                <span th:if="${plan.pbRegion == '6'}"
+                                                                      th:text="전라도"></span>
+                                                                <span th:if="${plan.pbRegion == '7'}"
+                                                                      th:text="제주도"></span>
+                                                                <span th:if="${plan.pbRegion == '8'}"
+                                                                      th:text="기타"></span>
+                                                            </th:block>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="sc_des2">  <!-- 2-1 상자 -->
+                                        <div class="sc_des2_div">  <!-- 첫번째줄 -->
+                                            <div class="sc_des2_div_in"> <!-- 첫번째 줄 안에서 1칸 -->
+                                                <div class="sc_des2_intext">
+                                                    <div class="sc_des2_div2">
+                                                        <div class="sc_des2_div2_in">
+                                                            <div class="sc_des2_schIcon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                                     fill="#2564d0" viewBox="0 0 448 512">
+                                                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                                    <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM329 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-95 95-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L329 305z"
+                                                                          fill="#0064DE"></path>
+                                                                </svg>
+                                                            </div>
+
+                                                            <div class="sc_date_start" th:text="${plan.pbStartDate}">
+                                                                YYYY-MM-DD
+                                                            </div>
+                                                            <span class="art1_1btn_span_md">~</span>
+
+
+                                                            <div class="sc_date_end" th:text="${plan.pbEndDate}">
+                                                                YYYY-MM-DD
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article3">
+                            <th:block th:if="${maxDay != null}">
+                                <div th:each="num : ${#numbers.sequence(1, maxDay)}" class="table_area">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">
+                                        <span class="ctn1_span">
+                                                 <span class="ctn1_span2"><svg width="15" height="15"
+                                                                               viewBox="0 0 24 24" fill="#253333"
+                                                                               xmlns="http://www.w3.org/2000/svg"
+                                                                               color="#333333" size="15"><path
+                                                         fill-rule="evenodd" clip-rule="evenodd"
+                                                         d="M21.5143 12.7857C22.1619 12.462 22.1619 11.538 21.5143 11.2143L3.2715 2.09388C2.68733 1.80182 2 2.22657 2 2.87962L2 9.63235C2 10.1346 2.3726 10.559 2.87068 10.624L13.4216 12L2.87068 13.376C2.3726 13.441 2 13.8654 2 14.3676L2 21.1204C2 21.7734 2.68733 22.1982 3.2715 21.9061L21.5143 12.7857Z"
+                                                         fill=#ffffff></path></svg></span>
+                                                <span class="day1_span" th:text="'Day' + ${num}"></span>
+                                        </span>
+                                            </th>
+                                            <th scope="col">여행지</th>
+                                            <th scope="col">장소분류</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        <!--<th:block th:each="entry : ${planMap}">-->
+                                        <tr th:each="planDetail, planStat : ${planDetailList}"
+                                            th:if="${planDetail.pbdDate == num}">
+                                            <!-- Map의 key 출력 -->
+                                            <th scope="row">
+                                                <div class="ctn1_des_num" th:text="${planStat.count}"></div>
+                                            </th>
+                                            <!-- Map의 value(PlanDTO 목록) 반복하며 출력 -->
+                                            <td>
+                                                <p th:text="${planDetail.pbdPlaceName}"></p>
+                                            </td>
+                                            <td>
+                                                <!--<th:block th:each="plan : ${entry.value}" th:if="${entry.key == 1}">-->
+                                                <p th:text="${planDetail.pbdCategoryGroupName}"></p>
+                                                <!--</th:block>-->
+                                            </td>
+                                            <td>
+                                                <th:block th:if="${session.user != null}">
+                                                    <div class="sc_des_mark_hujitong"
+                                                         th:if="${plan.user.userNumber == session.user.userNumber}"
+                                                         th:attr="onclick=|deletePlan('${num}','${planDetail.pbdPlaceName}')|">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                             viewBox="0 0 448 512">
+                                                            <style>svg {
+                                                                fill: #df5368
+                                                            }</style>
+                                                            <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
+                                                        </svg>
+                                                    </div>
+                                                </th:block>
+                                            </td>
+                                            <input type="hidden" class="pbdx" th:value="${planDetail.pbdX}">
+                                            <input type="hidden" class="pbdy" th:value="${planDetail.pbdY}">
+                                        </tr>
+                                        <!--</th:block>-->
+                                        </tbody>
+                                    </table>
+                                    <th:block th:if="${session.user != null}">
+                                        <div th:if="${plan.user.userNumber == session.user.userNumber}" width="100%"
+                                             height="71px" display="flex" class="btm_btn">
+                                            <button class="place_add_btn" onclick="test(this)" th:value="${num}"
+                                                    id="detailPlaceAdd">장소 추가
+                                            </button>
+                                            <!--<button class="memo_add_btn">메모 추가</button>-->
+                                        </div>
+                                    </th:block>
+
+                                </div>
+                            </th:block>
+
+
+                        </div>
+
+
+                        <div height="auto" class="article4">
+                            <div class="article4_line"></div>
+                            <th:block th:if="${session.user != null}">
+                                <div class="add_place_area" th:if="${plan.user.userNumber == session.user.userNumber}">
+                                    <div class="add_place_area_icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19.9387 10.7632C19.9387 15.0508 12.4693 21.8536 12.4693 21.8536C12.4693 21.8536 5 15.0508 5 10.7632C5 6.47572 8.34413 3 12.4693 3C16.5945 3 19.9387 6.47572 19.9387 10.7632Z"
+                                                  fill="#7D7DFF"></path>
+                                            <circle cx="12.4699" cy="9.91282" r="3.37327" fill="white"></circle>
+                                        </svg>
+                                    </div>
+                                    <button class="schedule_add_btn" id="schedule_add_btn">
+                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.5 1V12" stroke="#000" stroke-width="2" stroke-linecap="round"
+                                                  stroke-linejoin="round"></path>
+                                            <path d="M12 6.5L1 6.5" stroke="#000" stroke-width="2"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round"></path>
+                                        </svg>
+                                        <span>여행일정 추가</span></button>
+                                </div>
+                            </th:block>
+                        </div>
+
+
+                        <th:block th:if="${session.user != null}">
+                            <div class="complete_write_area" th:if="${plan.user.userNumber == session.user.userNumber}">
+                                <button color="#fff" class="complete_write_btn">일정 수정 완료하기</button>
+                                <input type="hidden" th:value="${plan.pbNum}" id="pbNum">
+                                <input type="hidden" th:value="${plan.pbViewCount}" id="pbViewCount">
+                            </div>
+                            <div class="complete_write_area" th:if="${plan.user.userNumber != session.user.userNumber}">
+                                <button color="#fff" class="complete_write_btn2">다른 일정 보기</button>
+                            </div>
+                        </th:block>
+
+                        <th:block th:if="${session.user == null}">
+                            <div class="complete_write_area">
+                                <button color="#fff" class="complete_write_btn2">다른 일정 보기</button>
+                            </div>
+                        </th:block>
+
+                    </div>
+                    <div th:if="${session.user != null}">
+                        <input type="hidden" th:value="${session.user.userNumber}" id="sessionUser">
+                        <input type="hidden" th:value="${plan.user.userNumber}" id="boardUser">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:include="/footer.html :: footer"></footer>
+</div>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="/js/header.js"></script>
+
+
+<!--카카오 맵-->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769&libraries=services,clusterer,drawing"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+
+<script src="/js/community/plan/plan_detail.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+</html>

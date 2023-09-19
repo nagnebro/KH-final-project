@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>plan.html</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/community/plan/plan.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="next">
+    <header th:include="header.html :: header"></header>
+
+
+    <div class="m">
+        <!-- 메인부분 코드 작성 -->
+        <!--일정 메뉴바 -->
+        <section direction="vertical" class="sc-172ec6f6-0 lfdViP"
+                 style="display: flex; box-sizing: border-box;">
+            <div class="sc-2ac7fd0b-1 bPhBqO" style="margin-right: 24px;">
+                <div class="sc-cfa28f78-0 kOhONI">
+                    <div class="sc-cfa28f78-1 eUMRoF">
+                        <div class="sc-cfa28f78-2 kuUPD">
+                            <svg width="16" height="16" viewBox="0 0 16 17" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.45301 14.7689C11.0169 14.7689 13.906 11.7023 13.906 7.91942C13.906 4.13656 11.0169 1.06995 7.45301 1.06995C3.88911 1.06995 1 4.13656 1 7.91942C1 11.7023 3.88911 14.7689 7.45301 14.7689Z"
+                                      stroke="#9A9A9A" stroke-miterlimit="10"></path>
+                                <path d="M12.1982 12.9564L14.9999 15.9301" stroke="#9A9A9A" stroke-miterlimit="10"
+                                      stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <input placeholder="어디로 여행가시나요?" class="sc-cfa28f78-3 iRtETS" value=""></div>
+                </div>
+            </div>
+            <div class="sc-50c338b6-0 flYSGk">
+                <div class="sc-50c338b6-1 ljbcoF">
+                    <div class="sc-fe318b44-0 bPOjyX">
+                        <button class="sc-fe318b44-1 eTYLaQ">최신 순</button>
+                        <button class="sc-fe318b44-1 diPORg">조회 순</button>
+                        <button class="sc-fe318b44-1 diPORg">추천 순</button>
+                        <button class="sc-fe318b44-1 diPORg">모집중</button>
+                        <button class="sc-fe318b44-1 diPORg">모집완료</button>
+                    </div>
+                </div>
+
+
+                <!--조회기간, 모든국가 -->
+                <div class="sc-758baf56-0 lcwauR">
+                    <div class="sc-758baf56-1 dunNSc">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"
+                             style="transition: transform 0.3s ease 0s; transform: rotate(0deg); cursor: pointer; display: inline-block;">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 9.49252C0.75 9.19691 0.992057 8.95728 1.29065 8.95728H19.2094C19.5079 8.95728 19.75 9.19691 19.75 9.49252C19.75 9.78813 19.5079 10.0278 19.2094 10.0278H1.29065C0.992057 10.0278 0.75 9.78813 0.75 9.49252Z"
+                                  fill="#6a6a6a"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 3.2225C0.75 2.92689 0.992057 2.68726 1.29065 2.68726H19.2094C19.5079 2.68726 19.75 2.92689 19.75 3.2225C19.75 3.51811 19.5079 3.75775 19.2094 3.75775H1.29065C0.992057 3.75775 0.75 3.51811 0.75 3.2225Z"
+                                  fill="#6a6a6a"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 15.7625C0.75 15.4669 0.992057 15.2273 1.29065 15.2273H19.2094C19.5079 15.2273 19.75 15.4669 19.75 15.7625C19.75 16.0582 19.5079 16.2978 19.2094 16.2978H1.29065C0.992057 16.2978 0.75 16.0582 0.75 15.7625Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.62799 3.38083C8.62799 4.75331 7.50415 5.86592 6.11783 5.86592C4.7315 5.86592 3.60767 4.75331 3.60767 3.38083C3.60767 2.00836 4.7315 0.895752 6.11783 0.895752C7.50415 0.895752 8.62799 2.00836 8.62799 3.38083Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M6.11797 1.48977C5.06302 1.48977 4.20781 2.33643 4.20781 3.38085C4.20781 4.42526 5.06302 5.27192 6.11797 5.27192C7.17293 5.27192 8.02814 4.42526 8.02814 3.38085C8.02814 2.33643 7.17293 1.48977 6.11797 1.48977ZM3.00781 3.38085C3.00781 1.68031 4.40028 0.301758 6.11797 0.301758C7.83567 0.301758 9.22814 1.68031 9.22814 3.38085C9.22814 5.08138 7.83567 6.45993 6.11797 6.45993C4.40028 6.45993 3.00781 5.08138 3.00781 3.38085Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.62799 15.7898C8.62799 17.1622 7.50415 18.2749 6.11783 18.2749C4.7315 18.2749 3.60767 17.1622 3.60767 15.7898C3.60767 14.4173 4.7315 13.3047 6.11783 13.3047C7.50415 13.3047 8.62799 14.4173 8.62799 15.7898Z"
+                                  fill="white"></path>
+                            <path d="M16.8904 9.65085C16.8904 11.0233 15.7666 12.1359 14.3803 12.1359C12.994 12.1359 11.8701 11.0233 11.8701 9.65085C11.8701 8.27838 12.994 7.16577 14.3803 7.16577C15.7666 7.16577 16.8904 8.27838 16.8904 9.65085Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M14.3802 7.75979C13.3252 7.75979 12.47 8.60645 12.47 9.65087C12.47 10.6953 13.3252 11.5419 14.3802 11.5419C15.4351 11.5419 16.2903 10.6953 16.2903 9.65087C16.2903 8.60645 15.4351 7.75979 14.3802 7.75979ZM11.27 9.65087C11.27 7.95033 12.6625 6.57178 14.3802 6.57178C16.0979 6.57178 17.4903 7.95033 17.4903 9.65087C17.4903 11.3514 16.0979 12.73 14.3802 12.73C12.6625 12.73 11.27 11.3514 11.27 9.65087Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.48468 15.9211C8.48468 17.2936 7.36084 18.4062 5.97452 18.4062C4.58819 18.4062 3.46436 17.2936 3.46436 15.9211C3.46436 14.5486 4.58819 13.436 5.97452 13.436C7.36084 13.436 8.48468 14.5486 8.48468 15.9211Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M5.97442 14.0298C4.91947 14.0298 4.06426 14.8765 4.06426 15.9209C4.06426 16.9653 4.91947 17.812 5.97442 17.812C7.02937 17.812 7.88458 16.9653 7.88458 15.9209C7.88458 14.8765 7.02937 14.0298 5.97442 14.0298ZM2.86426 15.9209C2.86426 14.2204 4.25673 12.8418 5.97442 12.8418C7.69212 12.8418 9.08458 14.2204 9.08458 15.9209C9.08458 17.6214 7.69212 19 5.97442 19C4.25673 19 2.86426 17.6214 2.86426 15.9209Z"
+                                  fill="#6a6a6a"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 9.49252C0.75 9.19691 0.992057 8.95728 1.29065 8.95728H19.2094C19.5079 8.95728 19.75 9.19691 19.75 9.49252C19.75 9.78813 19.5079 10.0278 19.2094 10.0278H1.29065C0.992057 10.0278 0.75 9.78813 0.75 9.49252Z"
+                                  fill="#6a6a6a"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 3.2225C0.75 2.92689 0.992057 2.68726 1.29065 2.68726H19.2094C19.5079 2.68726 19.75 2.92689 19.75 3.2225C19.75 3.51811 19.5079 3.75775 19.2094 3.75775H1.29065C0.992057 3.75775 0.75 3.51811 0.75 3.2225Z"
+                                  fill="#6a6a6a"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 15.7625C0.75 15.4669 0.992057 15.2273 1.29065 15.2273H19.2094C19.5079 15.2273 19.75 15.4669 19.75 15.7625C19.75 16.0582 19.5079 16.2978 19.2094 16.2978H1.29065C0.992057 16.2978 0.75 16.0582 0.75 15.7625Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.62775 3.38083C8.62775 4.75331 7.50391 5.86592 6.11758 5.86592C4.73126 5.86592 3.60742 4.75331 3.60742 3.38083C3.60742 2.00836 4.73126 0.895752 6.11758 0.895752C7.50391 0.895752 8.62775 2.00836 8.62775 3.38083Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M6.11797 1.48977C5.06302 1.48977 4.20781 2.33643 4.20781 3.38085C4.20781 4.42526 5.06302 5.27192 6.11797 5.27192C7.17293 5.27192 8.02814 4.42526 8.02814 3.38085C8.02814 2.33643 7.17293 1.48977 6.11797 1.48977ZM3.00781 3.38085C3.00781 1.68031 4.40028 0.301758 6.11797 0.301758C7.83567 0.301758 9.22814 1.68031 9.22814 3.38085C9.22814 5.08138 7.83567 6.45993 6.11797 6.45993C4.40028 6.45993 3.00781 5.08138 3.00781 3.38085Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.62775 15.7898C8.62775 17.1622 7.50391 18.2749 6.11758 18.2749C4.73126 18.2749 3.60742 17.1622 3.60742 15.7898C3.60742 14.4173 4.73126 13.3047 6.11758 13.3047C7.50391 13.3047 8.62775 14.4173 8.62775 15.7898Z"
+                                  fill="white"></path>
+                            <path d="M16.8904 9.65085C16.8904 11.0233 15.7666 12.1359 14.3803 12.1359C12.994 12.1359 11.8701 11.0233 11.8701 9.65085C11.8701 8.27838 12.994 7.16577 14.3803 7.16577C15.7666 7.16577 16.8904 8.27838 16.8904 9.65085Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M14.3797 7.75979C13.3247 7.75979 12.4695 8.60645 12.4695 9.65087C12.4695 10.6953 13.3247 11.5419 14.3797 11.5419C15.4346 11.5419 16.2899 10.6953 16.2899 9.65087C16.2899 8.60645 15.4346 7.75979 14.3797 7.75979ZM11.2695 9.65087C11.2695 7.95033 12.662 6.57178 14.3797 6.57178C16.0974 6.57178 17.4899 7.95033 17.4899 9.65087C17.4899 11.3514 16.0974 12.73 14.3797 12.73C12.662 12.73 11.2695 11.3514 11.2695 9.65087Z"
+                                  fill="#6a6a6a"></path>
+                            <path d="M8.48419 15.9211C8.48419 17.2936 7.36035 18.4062 5.97403 18.4062C4.58771 18.4062 3.46387 17.2936 3.46387 15.9211C3.46387 14.5486 4.58771 13.436 5.97403 13.436C7.36035 13.436 8.48419 14.5486 8.48419 15.9211Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M5.97442 14.0298C4.91947 14.0298 4.06426 14.8765 4.06426 15.9209C4.06426 16.9653 4.91947 17.812 5.97442 17.812C7.02937 17.812 7.88458 16.9653 7.88458 15.9209C7.88458 14.8765 7.02937 14.0298 5.97442 14.0298ZM2.86426 15.9209C2.86426 14.2204 4.25673 12.8418 5.97442 12.8418C7.69212 12.8418 9.08458 14.2204 9.08458 15.9209C9.08458 17.6214 7.69212 19 5.97442 19C4.25673 19 2.86426 17.6214 2.86426 15.9209Z"
+                                  fill="#6a6a6a"></path>
+                        </svg>
+                        <span class="sc-758baf56-2 dxggeT">조회기간</span></div>
+                    <div class="sc-758baf56-3 ezRbfq">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"
+                             style="transition: transform 0.3s ease 0s; transform: rotate(0deg); cursor: pointer; display: inline-block;">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 9.49252C0.75 9.19691 0.992057 8.95728 1.29065 8.95728H19.2094C19.5079 8.95728 19.75 9.19691 19.75 9.49252C19.75 9.78813 19.5079 10.0278 19.2094 10.0278H1.29065C0.992057 10.0278 0.75 9.78813 0.75 9.49252Z"
+                                  fill="#6A6A6A"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 3.2225C0.75 2.92689 0.992057 2.68726 1.29065 2.68726H19.2094C19.5079 2.68726 19.75 2.92689 19.75 3.2225C19.75 3.51811 19.5079 3.75775 19.2094 3.75775H1.29065C0.992057 3.75775 0.75 3.51811 0.75 3.2225Z"
+                                  fill="#6A6A6A"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 15.7625C0.75 15.4669 0.992057 15.2273 1.29065 15.2273H19.2094C19.5079 15.2273 19.75 15.4669 19.75 15.7625C19.75 16.0582 19.5079 16.2978 19.2094 16.2978H1.29065C0.992057 16.2978 0.75 16.0582 0.75 15.7625Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.62799 3.38083C8.62799 4.75331 7.50415 5.86592 6.11783 5.86592C4.7315 5.86592 3.60767 4.75331 3.60767 3.38083C3.60767 2.00836 4.7315 0.895752 6.11783 0.895752C7.50415 0.895752 8.62799 2.00836 8.62799 3.38083Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M6.11797 1.48977C5.06302 1.48977 4.20781 2.33643 4.20781 3.38085C4.20781 4.42526 5.06302 5.27192 6.11797 5.27192C7.17293 5.27192 8.02814 4.42526 8.02814 3.38085C8.02814 2.33643 7.17293 1.48977 6.11797 1.48977ZM3.00781 3.38085C3.00781 1.68031 4.40028 0.301758 6.11797 0.301758C7.83567 0.301758 9.22814 1.68031 9.22814 3.38085C9.22814 5.08138 7.83567 6.45993 6.11797 6.45993C4.40028 6.45993 3.00781 5.08138 3.00781 3.38085Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.62799 15.7898C8.62799 17.1622 7.50415 18.2749 6.11783 18.2749C4.7315 18.2749 3.60767 17.1622 3.60767 15.7898C3.60767 14.4173 4.7315 13.3047 6.11783 13.3047C7.50415 13.3047 8.62799 14.4173 8.62799 15.7898Z"
+                                  fill="white"></path>
+                            <path d="M16.8904 9.65085C16.8904 11.0233 15.7666 12.1359 14.3803 12.1359C12.994 12.1359 11.8701 11.0233 11.8701 9.65085C11.8701 8.27838 12.994 7.16577 14.3803 7.16577C15.7666 7.16577 16.8904 8.27838 16.8904 9.65085Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M14.3802 7.75979C13.3252 7.75979 12.47 8.60645 12.47 9.65087C12.47 10.6953 13.3252 11.5419 14.3802 11.5419C15.4351 11.5419 16.2903 10.6953 16.2903 9.65087C16.2903 8.60645 15.4351 7.75979 14.3802 7.75979ZM11.27 9.65087C11.27 7.95033 12.6625 6.57178 14.3802 6.57178C16.0979 6.57178 17.4903 7.95033 17.4903 9.65087C17.4903 11.3514 16.0979 12.73 14.3802 12.73C12.6625 12.73 11.27 11.3514 11.27 9.65087Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.48468 15.9211C8.48468 17.2936 7.36084 18.4062 5.97452 18.4062C4.58819 18.4062 3.46436 17.2936 3.46436 15.9211C3.46436 14.5486 4.58819 13.436 5.97452 13.436C7.36084 13.436 8.48468 14.5486 8.48468 15.9211Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M5.97442 14.0298C4.91947 14.0298 4.06426 14.8765 4.06426 15.9209C4.06426 16.9653 4.91947 17.812 5.97442 17.812C7.02937 17.812 7.88458 16.9653 7.88458 15.9209C7.88458 14.8765 7.02937 14.0298 5.97442 14.0298ZM2.86426 15.9209C2.86426 14.2204 4.25673 12.8418 5.97442 12.8418C7.69212 12.8418 9.08458 14.2204 9.08458 15.9209C9.08458 17.6214 7.69212 19 5.97442 19C4.25673 19 2.86426 17.6214 2.86426 15.9209Z"
+                                  fill="#6A6A6A"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 9.49252C0.75 9.19691 0.992057 8.95728 1.29065 8.95728H19.2094C19.5079 8.95728 19.75 9.19691 19.75 9.49252C19.75 9.78813 19.5079 10.0278 19.2094 10.0278H1.29065C0.992057 10.0278 0.75 9.78813 0.75 9.49252Z"
+                                  fill="#6A6A6A"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 3.2225C0.75 2.92689 0.992057 2.68726 1.29065 2.68726H19.2094C19.5079 2.68726 19.75 2.92689 19.75 3.2225C19.75 3.51811 19.5079 3.75775 19.2094 3.75775H1.29065C0.992057 3.75775 0.75 3.51811 0.75 3.2225Z"
+                                  fill="#6A6A6A"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.75 15.7625C0.75 15.4669 0.992057 15.2273 1.29065 15.2273H19.2094C19.5079 15.2273 19.75 15.4669 19.75 15.7625C19.75 16.0582 19.5079 16.2978 19.2094 16.2978H1.29065C0.992057 16.2978 0.75 16.0582 0.75 15.7625Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.62775 3.38083C8.62775 4.75331 7.50391 5.86592 6.11758 5.86592C4.73126 5.86592 3.60742 4.75331 3.60742 3.38083C3.60742 2.00836 4.73126 0.895752 6.11758 0.895752C7.50391 0.895752 8.62775 2.00836 8.62775 3.38083Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M6.11797 1.48977C5.06302 1.48977 4.20781 2.33643 4.20781 3.38085C4.20781 4.42526 5.06302 5.27192 6.11797 5.27192C7.17293 5.27192 8.02814 4.42526 8.02814 3.38085C8.02814 2.33643 7.17293 1.48977 6.11797 1.48977ZM3.00781 3.38085C3.00781 1.68031 4.40028 0.301758 6.11797 0.301758C7.83567 0.301758 9.22814 1.68031 9.22814 3.38085C9.22814 5.08138 7.83567 6.45993 6.11797 6.45993C4.40028 6.45993 3.00781 5.08138 3.00781 3.38085Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.62775 15.7898C8.62775 17.1622 7.50391 18.2749 6.11758 18.2749C4.73126 18.2749 3.60742 17.1622 3.60742 15.7898C3.60742 14.4173 4.73126 13.3047 6.11758 13.3047C7.50391 13.3047 8.62775 14.4173 8.62775 15.7898Z"
+                                  fill="white"></path>
+                            <path d="M16.8904 9.65085C16.8904 11.0233 15.7666 12.1359 14.3803 12.1359C12.994 12.1359 11.8701 11.0233 11.8701 9.65085C11.8701 8.27838 12.994 7.16577 14.3803 7.16577C15.7666 7.16577 16.8904 8.27838 16.8904 9.65085Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M14.3797 7.75979C13.3247 7.75979 12.4695 8.60645 12.4695 9.65087C12.4695 10.6953 13.3247 11.5419 14.3797 11.5419C15.4346 11.5419 16.2899 10.6953 16.2899 9.65087C16.2899 8.60645 15.4346 7.75979 14.3797 7.75979ZM11.2695 9.65087C11.2695 7.95033 12.662 6.57178 14.3797 6.57178C16.0974 6.57178 17.4899 7.95033 17.4899 9.65087C17.4899 11.3514 16.0974 12.73 14.3797 12.73C12.662 12.73 11.2695 11.3514 11.2695 9.65087Z"
+                                  fill="#6A6A6A"></path>
+                            <path d="M8.48419 15.9211C8.48419 17.2936 7.36035 18.4062 5.97403 18.4062C4.58771 18.4062 3.46387 17.2936 3.46387 15.9211C3.46387 14.5486 4.58771 13.436 5.97403 13.436C7.36035 13.436 8.48419 14.5486 8.48419 15.9211Z"
+                                  fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M5.97442 14.0298C4.91947 14.0298 4.06426 14.8765 4.06426 15.9209C4.06426 16.9653 4.91947 17.812 5.97442 17.812C7.02937 17.812 7.88458 16.9653 7.88458 15.9209C7.88458 14.8765 7.02937 14.0298 5.97442 14.0298ZM2.86426 15.9209C2.86426 14.2204 4.25673 12.8418 5.97442 12.8418C7.69212 12.8418 9.08458 14.2204 9.08458 15.9209C9.08458 17.6214 7.69212 19 5.97442 19C4.25673 19 2.86426 17.6214 2.86426 15.9209Z"
+                                  fill="#6A6A6A"></path>
+                        </svg>
+                        <p class="sc-758baf56-4 hCYEIH">모든 지역</p></div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="main_content2">
+            <div class="main_content1_text">
+                <div class="mct_1">여행 일정 게시판</div>
+                <div class="mct_2">여행 일정 구경하기</div>
+            </div>
+
+            <div class="main_content1_box">
+
+
+                <th:block th:each="plan, planStat : ${planList}">
+                    <!--                    <th:block th:each="plandetail : ${planDetailList}" th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}">-->
+                    <div class="test2">
+                        <div class="test2_content1">
+                            <div class="user_profile">
+                                <div class="user_img">
+                                    <img th:src="'/file/profile_image/' + ${plan.user.userImg}">
+                                </div>
+                                <div class="user_info">
+                                    <div class="user_nick2" th:text="${plan.user.userName}"></div>
+                                    <div class="user_agender2" th:if="${plan.user.userGender == 'M' }">20대 · 남성</div>
+                                    <!-- 나이대 표시 필요 -->
+                                    <div class="user_agender2" th:if="${plan.user.userGender == 'F' }">20대 · 여성</div>
+                                    <!-- 나이대 표시 필요 -->
+                                </div>
+                            </div>
+                            <div class="box_shortline"></div>
+                            <div class="trip_profile">
+                                <div class="trip_info">
+                                    <div class="trip_len"><i class="fa-solid fa-calendar" style="color: #9a9a9a;"></i>여행기간
+                                    </div>
+
+                                    <div class="trip_date" th:text="${plan.pbStartDate} + ' - ' + ${plan.pbEndDate}">
+                                        <!--9일 · 10/16-10/24--> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map">
+
+                            <div th:id="${planStat.count}"
+                                 style="width:100%;height:100%;position:relative;overflow:hidden;">
+                                <script type="text/javascript"
+                                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769"></script>
+                                <script th:inline="javascript">
+                                    console.log([[${planStat.count}]]);
+                                    /*[# th:each="plandetail : ${planDetailList}"
+                                               th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}"]*/
+                                    var mapContainer = document.getElementById(`[[${planStat.count}]]`); // 지도를 표시할 div
+
+                                    var pbdXc =  /*[[${plandetail.pbdX}]]*/;
+                                    var pbdYc =  /*[[${plandetail.pbdY}]]*/;
+                                    mapOption = {
+                                        center: new kakao.maps.LatLng(pbdYc, pbdXc), // 지도의 중심좌표
+                                        level: 10 // 지도의 확대 레벨
+
+                                    };
+                                    /*[/]*/
+
+
+                                    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                                    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                                    var markers = [];
+
+                                    var positions = [];
+                                    /*[# th:each="plandetail : ${planDetailList}"
+                                              th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}"]*/
+                                    var pbdX =  /*[[${plandetail.pbdX}]]*/;
+                                    console.log("x = " + pbdX);
+                                    var pbdY =  /*[[${plandetail.pbdY}]]*/;
+                                    console.log("y = " + pbdY);
+
+                                    var position = new kakao.maps.LatLng(pbdY, pbdX);
+                                    console.log(position);
+
+                                    positions.push(position);
+                                    /*[/]*/
+
+                                    console.log(positions);
+                                    // positions 배열에 있는 좌표로 마커를 추가합니다
+                                    for (var i = 0; i < positions.length; i++) {
+                                        addMarker(positions[i]);
+                                    }
+
+                                    // 마커를 생성하고 지도위에 표시하는 함수입니다
+                                    function addMarker(position) {
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        markers.push(marker);
+                                    }
+
+                                    // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+                                    function setMarkers(map) {
+                                        for (var i = 0; i < markers.length; i++) {
+                                            markers[i].setMap(map);
+                                        }
+                                    }
+
+
+                                </script>
+
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <div class="test2_area">
+                                <div class="area_text" th:if="${plan.pbRegion == '1'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i>서울
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '2'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i>경기도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '3'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 강원도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '4'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 충청도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '5'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 경상도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '6'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 전라도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '7'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 제주도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '8'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 기타
+                                </div>
+                            </div>
+                            <div class="nick_plan" th:text="${plan.pbTitle}">
+                                <!--nickname님의 여행일정--> </div>
+
+                        </div>
+
+                        <!--Day버튼-->
+                        <div class="test2_day_buttonarea">
+                            <div class="test2_day_buttonarea_2">
+                                <div class="test2_day_buttons">
+                                    <th:block th:each="maxDay : ${maxDays}" th:if="${planStat.index == maxDayStat.index}">
+                                        <th:block th:each="num : ${#numbers.sequence(1, maxDay)}">
+                                        <button class="test2_day_button_selected" th:if="${numStat.index == 0}">
+                                        <span class="sc-20343a87-3 cZhUke"><svg width="15" height="15"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                color="#fff" size="15"><path
+                                                fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.5143 12.7857C22.1619 12.462 22.1619 11.538 21.5143 11.2143L3.2715 2.09388C2.68733 1.80182 2 2.22657 2 2.87962L2 9.63235C2 10.1346 2.3726 10.559 2.87068 10.624L13.4216 12L2.87068 13.376C2.3726 13.441 2 13.8654 2 14.3676L2 21.1204C2 21.7734 2.68733 22.1982 3.2715 21.9061L21.5143 12.7857Z"
+                                                fill="#fff"></path></svg></span>
+                                            <span th:text="Day+${numStat.count}" class="day_text"></span>
+                                        </button>
+                                        <button class="test2_day_button_unselected" th:if="${numStat.index != 0}" th:text="Day+${numStat.count}">
+                                            Day2
+                                        </button>
+                                        </th:block>
+                                    </th:block>
+                                </div>
+                                <!--<button class="test2_day_button_unselected">
+                                    Day3
+                                </button>
+                                <button class="test2_day_button_unselected">
+                                    Day4
+                                </button>-->
+                            </div>
+                        </div>
+                        <!--여행지 -->
+                        <div type="main" class="test2_place">
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <th:block th:each="plandetail : ${planDetailList}"
+                                              th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}">
+
+                                        <div class="swiper-slide">
+                                            <span th:text="${plandetail.pbdPlaceName}"><!--장소1--></span><br>
+                                            <span th:text="${plandetail.pbdCategoryGroupName}"><!--장소카테고리--></span>
+                                        </div>
+                                    </th:block>
+
+                                </div>
+                                <!--                                <div class="swiper-button-next"></div>-->
+                                <!--                                <div class="swiper-button-prev"></div>-->
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+
+                        </div>
+
+                        <!--일정담기, 일정상세보기 버튼-->
+                        <div class="test2_button">
+                            <button class="test2_btn1" id="test2_btn1" href="javascript:;">
+                            <span class="test2_btn1_span">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd"
+                                                                              d="M16.5303 13.5303C16.2374 13.8232 15.7625 13.8232 15.4696 13.5303L10.6967 8.75736C10.4038 8.46447 10.4038 7.98959 10.6967 7.6967C10.9896 7.40381 11.4644 7.40381 11.7573 7.6967L15.25 11.1893L15.25 2C15.25 1.58579 15.5858 1.25 16 1.25C16.4142 1.25 16.75 1.58579 16.75 2L16.75 11.1893L20.2426 7.6967C20.5355 7.40381 21.0104 7.40381 21.3033 7.6967C21.5962 7.98959 21.5962 8.46447 21.3033 8.75736L16.5303 13.5303Z"
+                                                                              fill="#00CE7C"></path><path
+                                        fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.99988 2H6C3.79086 2 2 3.79086 2 6V18C2 20.2091 3.79086 22 6 22H18C20.2091 22 22 20.2091 22 18V6C22 5.98946 22 5.97894 21.9999 5.96842V14.0001H20.5V18C20.5 19.3807 19.3807 20.5 18 20.5H6C4.61929 20.5 3.5 19.3807 3.5 18V6C3.5 4.61929 4.61929 3.5 6 3.5H7.99988V2Z"
+                                        fill="#00CE7C"></path></svg>
+                            </span>
+                                "일정 공유"
+                            </button>
+                            <button class="test2_btn2"
+                                    th:onclick="|location.href='@{/community/plan/detail(pbNum=${plan.pbNum})}'|">
+                            <span class="test2_btn2_span">
+                                <svg width="18" height="18" viewBox="0 0 17 17" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"><circle cx="2.16667" cy="4.16667" r="0.666667"
+                                                                                fill="#00CE7C"></circle><circle
+                                        cx="2.16667" cy="8.83317" r="0.666667" fill="#00CE7C"></circle><circle
+                                        cx="2.16667" cy="13.4997" r="0.666667" fill="#00CE7C"></circle><rect x="4.16675"
+                                                                                                             y="3.5"
+                                                                                                             width="10.6667"
+                                                                                                             height="1"
+                                                                                                             rx="0.5"
+                                                                                                             fill="#00CE7C"></rect><rect
+                                        x="4.16675" y="8.1665" width="10.6667" height="1" rx="0.5"
+                                        fill="#00CE7C"></rect><rect x="4.16675" y="12.833" width="10.6667" height="1"
+                                                                    rx="0.5" fill="#00CE7C"></rect></svg>
+                            </span>
+                                "일정 상세보기"
+                            </button>
+                        </div>
+                    </div>
+
+                </th:block>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <footer th:include="/footer.html :: footer"></footer>
+</div>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="/js/header.js"></script>
+
+<!--카카오 맵-->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769&libraries=services,clusterer,drawing"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+
+<script src="/js/community/plan/plan.js"></script>
+
+<!--카카오 일정공유-->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+        integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+        crossorigin="anonymous"></script>
+<script>
+    Kakao.init('c012367ce50cd5f2e93814481c3cf769'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    const shareBtnList = document.querySelectorAll('.test2_btn1');
+
+    for (var i = 0; i < shareBtnList.length; i++) {
+
+        Kakao.Share.createDefaultButton({
+            container: shareBtnList[i],
+            objectType: 'location',
+            address: '경기 성남시 분당구 판교역로 166 3층',
+            addressTitle: '카카오 판교아지트 카페톡',
+            content: {
+                title: '여행시그널에서 메시지를 보냈어요.',
+                description: '일정 공유가 도착했습니다.',
+                imageUrl:
+                // 'http://k.kakaocdn.net/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
+                    'https://img.freepik.com/free-photo/turquoise-water-palm-trees-luxury-vacation-destination-generated-by-ai_188544-10577.jpg?w=1380&t=st=1694499044~exp=1694499644~hmac=a9ee32e6274414ead23c50d35798e84e8738dcb8f94d3e1688919e61f6f9ac1c',
+                link: {
+                    // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com',
+                },
+            },
+            social: {
+                likeCount: 286,
+                commentCount: 45,
+                sharedCount: 845,
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: 'https://developers.kakao.com',
+                        webUrl: 'https://developers.kakao.com',
+                    },
+                },
+            ],
+        });
+    }
+
+
+</script>
+
+
+</body>
+</html>

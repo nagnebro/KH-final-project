@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test Error Page!</title>
+    <link rel="shortcut icon" href="/img/member/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/member/community_main.css">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+    <script src = "/jq/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <script src="/js/header.js"></script>
+</head>
+<body>
+<header th:include="/header.html :: header"></header>
+<div class="errorPage">
+
+
+    <h1>올바르지 않은 경로로 접속하셨습니다.</h1>
+    <a href='/'>홈으로가기</a>
+</div>
+<div th:include="/footer.html :: footer"></div>
+
+
+</body>
+</html>

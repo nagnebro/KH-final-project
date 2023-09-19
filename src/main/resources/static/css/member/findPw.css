@@ -1,0 +1,176 @@
+body {
+    /*margin: 0; !* body의 기본 마진 제거 *!*/
+    height: 100vh; /* 높이를 viewport 높이의 100%로 설정 */
+    /*display: flex; !* Flexbox 레이아웃 사용 *!*/
+    /*justify-content: center; !* 수평 가운데 정렬 *!*/
+    /*align-items: center; !* 수직 가운데 정렬 *!*/
+
+
+}
+
+.next{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+
+.idpw-box {
+
+    margin : 0 auto;
+    margin-top: 20px;
+    font-size: 18px;
+    top: 80px;
+    height: 70px;
+    z-index: 1;
+    width: 600px;
+}
+
+.idpw-box-tabs {
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    background: rgb(255, 255, 255);
+    border-radius: 15px 15px 0px 0px;
+    height: 70px;
+}
+
+.idpw-box-tabs-click {
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease 0s;
+}
+
+.idpw-box-tabs-non-click {
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    /*color: rgb(170, 170, 170);*/
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.3s ease 0s;
+}
+
+.idpw-box-tabs-clicked-bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    width: 50%;
+    height: 2px;
+    background: #00B8FF;
+    transition: left 0.3s ease 0s;
+}
+
+.idpw-container{
+
+    width: 500px;
+    box-sizing : border-box;
+    margin : 0 auto;
+    box-shadow: rgba(25, 25, 25, 0.2) 0px 6px 10px;
+    border-radius: 10px;
+    border : 1px solid lightgrey;
+
+}
+
+.idpw-container-inner{
+    margin:0 auto;
+    padding: 20px 20px;
+    width: 400px;
+
+
+}
+
+.idpw-content{
+
+    font-size : 14px;
+}
+
+.idpw-content div{
+
+    width: 550px;
+    border : 1px solid black;
+}
+
+.idpw-container p,.idpw-container h3, .idpw-container h2{
+
+    margin-bottom: 10px;
+}
+
+
+.idpw-container input{
+
+    padding-left: 10px;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border : 1px solid black;
+    box-sizing : border-box;
+    outline : none;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 10);
+
+}
+
+.find-id-block{
+
+    text-align: center;
+}
+
+.idpw-container button{
+
+    width: 400px;
+    height: 40px;
+    background-color:white;
+    border : 1px solid #2B96EC;
+    border-radius: 10px;
+    color : #2B96EC;
+    font-weight : 600;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.idpw-container button:hover{
+
+    transition : 0.5s;
+    cursor: pointer;
+    background-color: #1B96EC;
+    color:white;
+}
+
+.find-id-block{
+
+    box-sizing : border-box;
+}
+
+.disappear{
+
+    display: none;
+}
+
+#swal2-title{
+
+    font-size : 14px;
+}
+
+.swal2-styled{ /* Swal modal창 */
+
+    background-color: white !important;
+    color : black !important;
+    border : 2px solid #2B96EC !important;
+    box-shadow: none !important;
+}

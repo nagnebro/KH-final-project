@@ -1,0 +1,115 @@
+footer{
+    position: relative;
+    bottom: 0px;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 1200px;
+    padding-bottom: 20px;
+    color: rgb(106, 106, 106);
+    background: rgb(255, 255, 255);
+    border-top: 1px solid rgb(233, 233, 233);
+}
+
+.ft_main{
+    position: relative;
+    box-sizing: border-box;
+    width: 1200px;
+    margin: 0px auto;
+    padding: 0px 280px 0px 0px;
+}
+.ft_content1{
+    margin: 0.67em 0px;
+    font-size: 2em;
+}
+.ft_content2{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 20px;
+    color: rgb(106, 106, 106);
+}
+.ft_content2 p{
+    margin-bottom: 0px;
+}
+.ft_content3{
+    position: relative;
+    margin-top: 15px;
+}
+.ft_content4{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+    color: rgb(106, 106, 106);
+}
+.ft_content5{
+    margin: 14px 0px;
+}
+.ft_img{
+    width: 120px !important;
+    user-select: none;
+    -webkit-user-drag: none;
+    cursor: pointer;
+}
+.ft_content2 div{
+    font-weight: 600;
+    font-size: 17px;
+}
+.ft_content2 p{
+    font-size: 12px;
+    opacity: 0.8;
+}
+.ft_content3 span{
+    display: inline-block;
+    margin: 0px 24px 6px 0px;
+    font-size: 15px;
+    line-height: 1.5em;
+    color: rgb(106, 106, 106);
+    vertical-align: top;
+}
+em{
+    font-style: normal;
+}
+.ft_content4{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+    color: rgb(106, 106, 106);
+}
+.fc4_1{
+    cursor: pointer;
+    position: relative;
+    margin-right: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 22px;
+    color: rgb(154, 154, 154);
+}
+.ft_content4 div{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.fc4_2{
+    margin-right: 14px;
+    cursor: pointer;
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    color: rgb(154, 154, 154);
+}
+.ft_content5 p{
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 25px;
+    color: gray;
+}

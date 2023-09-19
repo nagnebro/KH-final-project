@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight</title>
+    <link href="/css/payment/paymentFlight.css" rel="stylesheet" type="text/css">
+    <link href="/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+    <script src="/jq/jquery-3.7.0.min.js" type="text/javascript"></script>
+    <script defer src="/js/payment/paymentFlight.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/header.js"></script>
+    <!--생년월일 없애기, 렌트카로 옮기기 생년월일 매서드 옮기기-->
+</head>
+<body>
+<div id="root" class="next">
+    <header th:include="/header.html :: header"></header>
+
+    <div class="mainBody">
+        <div class="container">
+            <div class="contents">
+                <div>
+                    <div class="firstBox">
+                        <section class="firstSection">
+                            <div class="fsTop">
+                                <h3 class="flight_title"> 여정 정보</h3>
+                                <div class="card-top-info-time">가는편</div>
+                            </div>
+                            <div class="ReservationInfo">
+                                <div class="card-top">
+                                    <!--                                    출발지 정보-->
+                                    <div class="card-top-info">
+                                        <div class="card-top-info-time">GMP</div>
+                                        <div class="card-top-info-date" th:text="${ticket.ticFromLocation}">서울/김포</div>
+                                    </div>
+                                    <div _ngcontent-wej-c25="" class="itinerary__to">
+                                    </div>
+                                    <!--도착지 정보-->
+                                    <div class="card-top-info">
+                                        <div class="card-top-info-time">CJU</div>
+                                        <div class="card-top-info-date" th:text="${ticket.ticToLocation}">제주</div>
+                                    </div>
+                                </div>
+                                <!--                                출발, 도착 date 정보-->
+                                <p class="card-bottom">
+                                <div class="card-bottom-text" id="flightDateInfo">2023년 09월 11일 (월) 출발시각 06:05 -도착시각
+                                    07:20
+                                </div>
+                                <!--                                항공사 이름-->
+                                <div _ngcontent-yis-c25 class="itinerary__etc ng-star-inserted">
+                                    <p _ngcontent-yis-c25="" class="itinerary__codeshare ng-star-inserted"
+                                       id="logo_img">
+                                        <!--                                항공사 이미지-->
+                                        <img class="airlineLogo"
+                                             th:src="'/img/store/flight/symbols/' + ${ticket.ticAirlineLogo}">
+                                        [[${ticket.ticAirlineName}]]
+                                    </p>
+                                </div>
+                                <!--                                좌석정보-->
+                                <div class="sit-info">
+                                    <div class="card-top-info-time" style="margin-right: 10px"
+                                         th:text="${ticket.ticVihicleId}">KE5153
+                                    </div>
+                                    <div class="card-top-info-date" th:text="${ticket.ticSeatGrade}">일반석(S)</div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="second-box">
+                        <div style="position: relative; height: 20px; background: rgb(246, 246, 246); box-shadow: rgb(246, 246, 246) -16px 26px 16px 39px;"></div>
+                        <!--                        차량 옵션정보 (table만든 데이터 집어넣기)-->
+                        <div class="second-box-tabs">
+                            <div class="second-box-tabs-non-click" data-a="0"
+                                 style="color:#00B8FF; font-weight:600">
+                                승객정보
+                            </div>
+                            <div class="second-box-tabs-non-click" data-a="1">
+                                환불/규정 안내
+                            </div>
+                            <div class="second-box-tabs-clicked-bar"></div>
+                        </div>
+                    </div>
+                    <div class="third-box">
+                        <section>
+                            <div class="sections-con show">
+
+                                <section class="driver-info-section">
+
+                                    <div class="driver-info-section-inputs">
+                                        <div class="driver-info-section-inputs-text">
+                                            <div>이름</div>
+                                            <input class="_input_default_pczwv_3 undefined" id="input_name"
+                                                   placeholder="이름을 입력해주세요."
+                                                   style="margin-bottom: 2px;" value="" disabled=false>
+                                        </div>
+
+                                        <div class="driver-info-section-inputs-text">
+                                            <div>휴대폰번호</div>
+                                            <div class="driver-info-section-inputs-text-phone">
+                                                <div style="flex: 1 1 0%;">
+                                                    <input class="_input_default_pczwv_3 StylesInpuWithBottomText-gVruQj cwqtNt"
+                                                           id="input_phone"
+                                                           pattern="^010\d{7,8}$" placeholder="휴대폰번호를 입력해주세요."
+                                                           style="margin-bottom: 2px;"
+                                                           type="tel" value=""/>
+                                                </div>
+                                                <button class="_button_default_1vx5o_3 StyledDriverInfoButton-doWmhM byxCxk hover:cursor-not-allowed"
+                                                        id="verifyBtn"
+                                                        type="button">
+                                                    인증번호
+                                                </button>
+                                            </div>
+                                            <div class="driver-info-section-inputs-text-phone auth hideClass"
+                                                 id="verify">
+                                                <div style="flex: 1 1 0%;">
+                                                    <input class="_input_default_pczwv_3 StylesInpuWithBottomText-gVruQj cwqtNt"
+                                                           id="input_auth"
+                                                           pattern="^010\d{7,8}$" placeholder="인증번호를 입력해주세요."
+                                                           style="margin-bottom: 2px;"
+                                                           type="tel" value=""/>
+                                                </div>
+                                                <button class="_button_default_1vx5o_3 StyledDriverInfoButton-doWmhM byxCxk hover:cursor-not-allowed"
+                                                        id="verifyConfirmBtn"
+                                                        type="button">
+                                                    인증확인
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="driver-info-section-inputs-text">
+                                            <div>성별</div>
+                                            <div _ngcontent-gmg-c37="" class="gender" role="group"
+                                                 aria-labelledby="p-gender-ADT-0">
+                                                <div _ngcontent-gmg-c37="" class="gender__item "><input
+                                                        _ngcontent-gmg-c37="" formcontrolname="gender" type="radio"
+                                                        value="male" id="rad-gender-M-ADT-0" name="rad-gender-ADT-0"
+                                                        class="ng-valid ng-dirty ng-touched">
+                                                    <label _ngcontent-gmg-c37="" for="rad-gender-M-ADT-0">남자</label>
+                                                </div>
+                                                <div _ngcontent-gmg-c37="" class="gender__item">
+                                                    <input _ngcontent-gmg-c37="" formcontrolname="gender" type="radio"
+                                                           value="female" id="rad-gender-F-ADT-0"
+                                                           name="rad-gender-ADT-0"
+                                                           class="ng-valid ng-dirty ng-touched">
+                                                    <label _ngcontent-gmg-c37="" for="rad-gender-F-ADT-0">여자</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="driver-info-section-inputs-text">
+                                            <div _ngcontent-ior-c37="" class="column -expand -half ng-star-inserted">
+                                                <label _ngcontent-ior-c37="" class="label" for="sel-nation-ADT-0">
+                                                    국적</label>
+                                                <div _ngcontent-ior-c37="" class="forms">
+                                                    <select _ngcontent-ior-c37="" formcontrolname="nation"
+                                                            class="ng-untouched ng-pristine ng-valid"
+                                                            id="sel-nation-ADT-0" name="selectBox">
+                                                        <option _ngcontent-ior-c37="" value="">선택하세요.</option><!---->
+                                                        <!---->
+                                                        <option _ngcontent-ior-c37="" value="KOR"
+                                                                class="ng-star-inserted">
+                                                            대한민국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GHA"
+                                                                class="ng-star-inserted">가나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GAB"
+                                                                class="ng-star-inserted">가봉
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GUY"
+                                                                class="ng-star-inserted">
+                                                            가이아나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GMB"
+                                                                class="ng-star-inserted">감비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GLP"
+                                                                class="ng-star-inserted">
+                                                            과들루프
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GTM"
+                                                                class="ng-star-inserted">
+                                                            과테말라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GRD"
+                                                                class="ng-star-inserted">
+                                                            그레나다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GRC"
+                                                                class="ng-star-inserted">그리스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GRL"
+                                                                class="ng-star-inserted">
+                                                            그린란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GIN"
+                                                                class="ng-star-inserted">기니
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GNB"
+                                                                class="ng-star-inserted">
+                                                            기니-비사우
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NAM"
+                                                                class="ng-star-inserted">
+                                                            나미비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NRU"
+                                                                class="ng-star-inserted">나우루
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NGA"
+                                                                class="ng-star-inserted">
+                                                            나이지리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SSD"
+                                                                class="ng-star-inserted">남수단
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ZAF"
+                                                                class="ng-star-inserted">
+                                                            남아프리카공화국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NLD"
+                                                                class="ng-star-inserted">
+                                                            네덜란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NPL"
+                                                                class="ng-star-inserted">네팔
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NOR"
+                                                                class="ng-star-inserted">
+                                                            노르웨이
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NFK"
+                                                                class="ng-star-inserted">노퍽섬
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NZL"
+                                                                class="ng-star-inserted">
+                                                            뉴질랜드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NCL"
+                                                                class="ng-star-inserted">
+                                                            뉴칼레도니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NIU"
+                                                                class="ng-star-inserted">니우에
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NER"
+                                                                class="ng-star-inserted">니제르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="NIC"
+                                                                class="ng-star-inserted">
+                                                            니키라과
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TWN"
+                                                                class="ng-star-inserted">대만
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DNK"
+                                                                class="ng-star-inserted">덴마크
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DMA"
+                                                                class="ng-star-inserted">
+                                                            도미니카
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DOM"
+                                                                class="ng-star-inserted">
+                                                            도미니카공화국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DEU"
+                                                                class="ng-star-inserted">독일
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TLS"
+                                                                class="ng-star-inserted">
+                                                            동티모르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LAO"
+                                                                class="ng-star-inserted">라오스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LBR"
+                                                                class="ng-star-inserted">
+                                                            라이베리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LVA"
+                                                                class="ng-star-inserted">
+                                                            라트비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="RUS"
+                                                                class="ng-star-inserted">러시아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LBN"
+                                                                class="ng-star-inserted">레바논
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LSO"
+                                                                class="ng-star-inserted">레소토
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ROU"
+                                                                class="ng-star-inserted">
+                                                            루마니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LUX"
+                                                                class="ng-star-inserted">
+                                                            룩셈부르크
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="RWA"
+                                                                class="ng-star-inserted">르완다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LBY"
+                                                                class="ng-star-inserted">리비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="REU"
+                                                                class="ng-star-inserted">
+                                                            리유니온
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LTU"
+                                                                class="ng-star-inserted">
+                                                            리투아니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LIE"
+                                                                class="ng-star-inserted">
+                                                            리히텐슈타인
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MDG"
+                                                                class="ng-star-inserted">
+                                                            마다가스카르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MTQ"
+                                                                class="ng-star-inserted">
+                                                            마르티니크
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MHL"
+                                                                class="ng-star-inserted">마샬
+                                                            군도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MYT"
+                                                                class="ng-star-inserted">마요트
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FSM"
+                                                                class="ng-star-inserted">
+                                                            마이크로네시아 연방
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MKD"
+                                                                class="ng-star-inserted">
+                                                            마케도니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MWI"
+                                                                class="ng-star-inserted">말라위
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MYS"
+                                                                class="ng-star-inserted">
+                                                            말레이시아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MLI"
+                                                                class="ng-star-inserted">말리
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MEX"
+                                                                class="ng-star-inserted">멕시코
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MCO"
+                                                                class="ng-star-inserted">모나코
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MAR"
+                                                                class="ng-star-inserted">모로코
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MUS"
+                                                                class="ng-star-inserted">
+                                                            모리셔스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MRT"
+                                                                class="ng-star-inserted">
+                                                            모리타니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MOZ"
+                                                                class="ng-star-inserted">
+                                                            모잠비크
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MSR"
+                                                                class="ng-star-inserted">
+                                                            몬세라트
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MNE"
+                                                                class="ng-star-inserted">
+                                                            몬테네그로
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MDA"
+                                                                class="ng-star-inserted">몰도바
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MDV"
+                                                                class="ng-star-inserted">몰디브
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MLT"
+                                                                class="ng-star-inserted">몰타
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MNG"
+                                                                class="ng-star-inserted">몽골
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="USA"
+                                                                class="ng-star-inserted">미국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="UMI"
+                                                                class="ng-star-inserted">미국령
+                                                            군소 제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VIR"
+                                                                class="ng-star-inserted">
+                                                            미국령버진아일랜드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MMR"
+                                                                class="ng-star-inserted">미얀마
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BHR"
+                                                                class="ng-star-inserted">바레인
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BRB"
+                                                                class="ng-star-inserted">
+                                                            바베이도스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VAT"
+                                                                class="ng-star-inserted">바티칸
+                                                            시국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BHS"
+                                                                class="ng-star-inserted">바하마
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BGD"
+                                                                class="ng-star-inserted">
+                                                            방글라데시
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BMU"
+                                                                class="ng-star-inserted">버뮤다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BEN"
+                                                                class="ng-star-inserted">베냉
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VEN"
+                                                                class="ng-star-inserted">
+                                                            베네수엘라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VNM"
+                                                                class="ng-star-inserted">베트남
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BEL"
+                                                                class="ng-star-inserted">벨기에
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BLR"
+                                                                class="ng-star-inserted">
+                                                            벨로루시
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BLZ"
+                                                                class="ng-star-inserted">벨리즈
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BIH"
+                                                                class="ng-star-inserted">보스니아
+                                                            헤르체고비나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BWA"
+                                                                class="ng-star-inserted">
+                                                            보츠와나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BOL"
+                                                                class="ng-star-inserted">
+                                                            볼리비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BDI"
+                                                                class="ng-star-inserted">부룬디
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BFA"
+                                                                class="ng-star-inserted">
+                                                            부르키나파소
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BTN"
+                                                                class="ng-star-inserted">부탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="MNP"
+                                                                class="ng-star-inserted">북마리아나
+                                                            제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PRK"
+                                                                class="ng-star-inserted">북한
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BGR"
+                                                                class="ng-star-inserted">
+                                                            불가리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BRA"
+                                                                class="ng-star-inserted">브라질
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="BRN"
+                                                                class="ng-star-inserted">
+                                                            브루나이
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VUT"
+                                                                class="ng-star-inserted">
+                                                            비누아투
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="WSM"
+                                                                class="ng-star-inserted">사모아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SAU"
+                                                                class="ng-star-inserted">
+                                                            사우디아라비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SMR"
+                                                                class="ng-star-inserted">
+                                                            산마리노
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="STP"
+                                                                class="ng-star-inserted">
+                                                            상투메프린시페
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SPM"
+                                                                class="ng-star-inserted">
+                                                            생피에르앤드미클롱
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ESH"
+                                                                class="ng-star-inserted">
+                                                            서사하라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SEN"
+                                                                class="ng-star-inserted">세네갈
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SRB"
+                                                                class="ng-star-inserted">
+                                                            세르비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SYC"
+                                                                class="ng-star-inserted">세이셸
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LCA"
+                                                                class="ng-star-inserted">세인트
+                                                            루시아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SHN"
+                                                                class="ng-star-inserted">세인트
+                                                            헬레나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VCT"
+                                                                class="ng-star-inserted">
+                                                            세인트빈센트 그레나딘
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KNA"
+                                                                class="ng-star-inserted">
+                                                            세인트키츠네비스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SOM"
+                                                                class="ng-star-inserted">
+                                                            소말리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SLB"
+                                                                class="ng-star-inserted">솔로몬
+                                                            제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SDN"
+                                                                class="ng-star-inserted">수단
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SUR"
+                                                                class="ng-star-inserted">수리남
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="LKA"
+                                                                class="ng-star-inserted">
+                                                            스리랑카
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SWZ"
+                                                                class="ng-star-inserted">
+                                                            스와질란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SWE"
+                                                                class="ng-star-inserted">스웨덴
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CHE"
+                                                                class="ng-star-inserted">스위스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ESP"
+                                                                class="ng-star-inserted">스페인
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SVK"
+                                                                class="ng-star-inserted">
+                                                            슬로바키아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SVN"
+                                                                class="ng-star-inserted">
+                                                            슬로베니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SYR"
+                                                                class="ng-star-inserted">시리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SLE"
+                                                                class="ng-star-inserted">
+                                                            시에라리온
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SGP"
+                                                                class="ng-star-inserted">
+                                                            싱가포르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ARE"
+                                                                class="ng-star-inserted">
+                                                            아랍에미레이트
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ABW"
+                                                                class="ng-star-inserted">아루바
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ARM"
+                                                                class="ng-star-inserted">
+                                                            아르메니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ARG"
+                                                                class="ng-star-inserted">
+                                                            아르헨티나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ASM"
+                                                                class="ng-star-inserted">
+                                                            아메리칸사모아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ISL"
+                                                                class="ng-star-inserted">
+                                                            아이슬란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="HTI"
+                                                                class="ng-star-inserted">아이티
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="IRL"
+                                                                class="ng-star-inserted">
+                                                            아일랜드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AZE"
+                                                                class="ng-star-inserted">
+                                                            아제르바이잔
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AFG"
+                                                                class="ng-star-inserted">
+                                                            아프가니스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AND"
+                                                                class="ng-star-inserted">안도라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ALB"
+                                                                class="ng-star-inserted">
+                                                            알바니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DZA"
+                                                                class="ng-star-inserted">알제리
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AGO"
+                                                                class="ng-star-inserted">앙골라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ATG"
+                                                                class="ng-star-inserted">
+                                                            앤티가바부다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AIA"
+                                                                class="ng-star-inserted">앵귈라
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ETH"
+                                                                class="ng-star-inserted">
+                                                            에디오피아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ERI"
+                                                                class="ng-star-inserted">
+                                                            에리트레아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="EST"
+                                                                class="ng-star-inserted">
+                                                            에스토니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ECU"
+                                                                class="ng-star-inserted">
+                                                            에콰도르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="SLV"
+                                                                class="ng-star-inserted">
+                                                            엘살바도르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GBR"
+                                                                class="ng-star-inserted">영국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="VGB"
+                                                                class="ng-star-inserted">
+                                                            영국령버진아일랜드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="YEM"
+                                                                class="ng-star-inserted">예멘
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="OMN"
+                                                                class="ng-star-inserted">오만
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AUT"
+                                                                class="ng-star-inserted">
+                                                            오스트리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="HND"
+                                                                class="ng-star-inserted">
+                                                            온두라스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="WLF"
+                                                                class="ng-star-inserted">왈리스
+                                                            퓌튀나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="JOR"
+                                                                class="ng-star-inserted">요르단
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="UGA"
+                                                                class="ng-star-inserted">우간다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="URY"
+                                                                class="ng-star-inserted">
+                                                            우르과이
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="UZB"
+                                                                class="ng-star-inserted">
+                                                            우즈베키스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="UKR"
+                                                                class="ng-star-inserted">
+                                                            우크라이나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="IRQ"
+                                                                class="ng-star-inserted">이라크
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="IRN"
+                                                                class="ng-star-inserted">이란
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ISR"
+                                                                class="ng-star-inserted">
+                                                            이스라엘
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="EGY"
+                                                                class="ng-star-inserted">이집트
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ITA"
+                                                                class="ng-star-inserted">
+                                                            이탈리아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="IND"
+                                                                class="ng-star-inserted">인도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="IDN"
+                                                                class="ng-star-inserted">
+                                                            인도네시아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="JPN"
+                                                                class="ng-star-inserted">일본
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="JAM"
+                                                                class="ng-star-inserted">
+                                                            자메이카
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ZWE"
+                                                                class="ng-star-inserted">
+                                                            잠바브웨
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="ZMB"
+                                                                class="ng-star-inserted">잠비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GNQ"
+                                                                class="ng-star-inserted">적도
+                                                            기니
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GEO"
+                                                                class="ng-star-inserted">조지아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="DJI"
+                                                                class="ng-star-inserted">주부티
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CHN"
+                                                                class="ng-star-inserted">중국
+                                                            (홍콩 SAR, 마카오 SAR 포함)
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CAF"
+                                                                class="ng-star-inserted">
+                                                            중앙아프리카공화국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GIB"
+                                                                class="ng-star-inserted">
+                                                            지브롤터
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TCD"
+                                                                class="ng-star-inserted">차드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CZE"
+                                                                class="ng-star-inserted">체코
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CHL"
+                                                                class="ng-star-inserted">칠레
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CMR"
+                                                                class="ng-star-inserted">카메룬
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CPV"
+                                                                class="ng-star-inserted">
+                                                            카보베르데
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KAZ"
+                                                                class="ng-star-inserted">
+                                                            카자흐스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="QAT"
+                                                                class="ng-star-inserted">카타르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KHM"
+                                                                class="ng-star-inserted">
+                                                            캄보디아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CAN"
+                                                                class="ng-star-inserted">캐나다
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KEN"
+                                                                class="ng-star-inserted">케냐
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CYM"
+                                                                class="ng-star-inserted">케이맨
+                                                            군도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="COM"
+                                                                class="ng-star-inserted">코모로
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CRI"
+                                                                class="ng-star-inserted">
+                                                            코스타리카
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CCK"
+                                                                class="ng-star-inserted">
+                                                            코코스제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CIV"
+                                                                class="ng-star-inserted">
+                                                            코트디부아르
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="COL"
+                                                                class="ng-star-inserted">
+                                                            콜롬비아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="COG"
+                                                                class="ng-star-inserted">콩고
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="COD"
+                                                                class="ng-star-inserted">콩고 민주
+                                                            공화국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CUB"
+                                                                class="ng-star-inserted">쿠바
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KWT"
+                                                                class="ng-star-inserted">
+                                                            쿠웨이트
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="COK"
+                                                                class="ng-star-inserted">쿡
+                                                            군도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="HRV"
+                                                                class="ng-star-inserted">
+                                                            크로아티아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CXR"
+                                                                class="ng-star-inserted">
+                                                            크리스마스섬
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KGZ"
+                                                                class="ng-star-inserted">
+                                                            키르기스스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="KIR"
+                                                                class="ng-star-inserted">
+                                                            키리바시
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="CYP"
+                                                                class="ng-star-inserted">
+                                                            키프로스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TJK"
+                                                                class="ng-star-inserted">
+                                                            타지키스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TZA"
+                                                                class="ng-star-inserted">
+                                                            탄자니아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="THA"
+                                                                class="ng-star-inserted">태국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TCA"
+                                                                class="ng-star-inserted">
+                                                            터크스케이커스 제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TGO"
+                                                                class="ng-star-inserted">토고
+                                                            공화국
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TKL"
+                                                                class="ng-star-inserted">
+                                                            토켈라우
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TON"
+                                                                class="ng-star-inserted">통가
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TKM"
+                                                                class="ng-star-inserted">
+                                                            투르크메니스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TUV"
+                                                                class="ng-star-inserted">투발루
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TUN"
+                                                                class="ng-star-inserted">튀니지
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TUR"
+                                                                class="ng-star-inserted">
+                                                            튀르키예
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="TTO"
+                                                                class="ng-star-inserted">
+                                                            트리니다드토바고
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PAN"
+                                                                class="ng-star-inserted">파나마
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PRY"
+                                                                class="ng-star-inserted">
+                                                            파라과이
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PAK"
+                                                                class="ng-star-inserted">
+                                                            파키스탄
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PNG"
+                                                                class="ng-star-inserted">
+                                                            파푸아뉴기니
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PLW"
+                                                                class="ng-star-inserted">팔라우
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PSE"
+                                                                class="ng-star-inserted">
+                                                            팔레스타인
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FRO"
+                                                                class="ng-star-inserted">
+                                                            페로제도
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PER"
+                                                                class="ng-star-inserted">페루
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PRT"
+                                                                class="ng-star-inserted">
+                                                            포르투갈
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FLK"
+                                                                class="ng-star-inserted">
+                                                            포클랜드제도(말비나스군도)
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="POL"
+                                                                class="ng-star-inserted">폴란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PRI"
+                                                                class="ng-star-inserted">
+                                                            푸에르토리코
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FRA"
+                                                                class="ng-star-inserted">프랑스
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="GUF"
+                                                                class="ng-star-inserted">프랑스령
+                                                            기아나
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PYF"
+                                                                class="ng-star-inserted">
+                                                            프랑스령폴리네시아
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FJI"
+                                                                class="ng-star-inserted">피지
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="FIN"
+                                                                class="ng-star-inserted">핀란드
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="PHL"
+                                                                class="ng-star-inserted">필리핀
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="HUN"
+                                                                class="ng-star-inserted">헝가리
+                                                        </option><!---->
+                                                        <option _ngcontent-ior-c37="" value="AUS"
+                                                                class="ng-star-inserted">호주
+                                                        </option>
+                                                    </select><!----></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="other-st">
+                                    <div class="payment-con">
+                                        <div class="payment-payment-con-text prod-option">결제 수단</div>
+                                        <div class="payment-con-select">
+                                            <div class="prod-option-count">
+                                                <div class="item-box">
+                                                    <div class="item-box-left">
+                                                        <label class="label-cbx" for="general2">
+                                                            <input checked="" class="invisible" id="general2"
+                                                                   name="insurance"
+                                                                   style="width: 20px; height: 20px;"
+                                                                   type="radio"
+                                                                   value="general">
+                                                            <div class="label-cbx-checkbox">
+                                                                <svg height="22px" viewBox="0 0 20 20" width="22px">
+                                                                    <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
+                                                                    <polyline points="4 11 8 15 16 6"></polyline>
+                                                                </svg>
+                                                            </div>
+                                                            <div>신용/체크카드</div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <div class="section-liner"></div>
+                                <section class="privacy-section">
+                                    <div class="privacy-section-top">안전상의 이유 또는 항공사 업체 사정에 따라 운항이 변경될 수
+                                        있습니다.
+                                    </div>
+                                    <div class="privacy-section-con">
+                                        <div class="privacy-section-con-text">
+                                            <div>서비스 이용약관</div>
+                                            <div class="underline view">보기</div>
+                                        </div>
+                                        <div class="privacy-section-con-text">
+                                            <div>이용 특약사항</div>
+                                            <div class="underline view">보기</div>
+                                        </div>
+                                        <div class="privacy-section-con-text">
+                                            <div>개인정보 수집 및 이용 동의</div>
+                                            <div class="underline view">보기</div>
+                                        </div>
+                                        <div class="privacy-section-con-text" style="margin-bottom: 20px;">
+                                            <div>개인정보 제3자 제공 동의</div>
+                                            <div class="underline view">보기</div>
+                                        </div>
+                                    </div>
+                                    <div class="warning-detail">
+                                        아이엠에스모빌리티(주)는 통신판매중개자로서 거래 당사자가 아닙니다.
+                                        <div>상품, 상품 정보, 거래조건 및 거래에 관련한 의무와 책임은 각 판매자에게 있습니다.</div>
+                                    </div>
+                                    <div class="agree">위 내용을 모두 확인하였으며, 결제에 동의합니다.</div>
+                                </section>
+                            </div>
+                            <div class="sections-con">
+                                <section class="prod-info-section1">
+                                    <div class="prod-option">항공권 변경</div>
+                                    <div class="prod-option-info">
+                                        <div class="prod-option-count">
+                                            <div class="item-box">
+                                                <div class="item-box-left">
+                                                    <label class="label-cbx">
+                                                        <div>변경 안내</div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="prod-option-info-detail">구매처에 따라 항공권 운임 차액 및 변경 규정이 다를 수 있습니다.
+                                            대한항공 홈페이지에서 구매한 항공권은 홈페이지, 앱 또는 서비스 센터에서 변경할 수 있습니다.
+                                            항공권 구매처가 대한항공이 아닌 경우에는 해당 구매처를 통해 문의해 주시기 바랍니다.
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="prod-info-section2">
+                                    <div class="prod-option">
+                                        <div>적용 규정</div>
+                                        <div class="sub-title">항공권 구매 후 변경 시 운임 규정 확인이 필요합니다.<img class="icon"
+                                                                                                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAJFBMVEVHcEyqqqqrq6uvr6+qqqqqqqqqqqqqqqqnp6erq6uqqqqqqqqzWaB7AAAAC3RSTlMAwDYQ0lvtgCBwl9YmRtEAAAFZSURBVDjLjVQrT8RAEJ4ruXAEc6drmhMIMCd4hCARiDWXIBDnOENSc8kdqqaKBEeCQWNrWNhrge/PsW3Z3eljCSOa6Xwzs/Mm+qWdm4lQk/sZtegxREXypSk/g6V1Qx4DV9MomG6AnCEjAXldsychVGqBA6i54Ycxbi0PPDnzPcBoLZxObb+tmYB7rV+MKuYBl83Yj3FXpSzyVrqjWJWSXby3y3CElf6e2pCGkQ1sqb9JbhQzabi40A5NcEQA2QRSbTa2espwA+1+YPOkw1dXizFdoNMbnQI+aKGoh8SWkqIP0NLQpXf+7FKUHMi+OSA+7V8oHaAIb33APvxA7HPFHueA9APZVx+gE2QlYYAuCSuiA8oisrI7oCw7a5QDykax1jqgbC0l9nUXoCga4xM0x8c7cHpE086I+oZ6+fcaeBens2r5vHc5BbNvrfPMcwBW/zkZ/iPTPUs/xvenV5RBgJoAAAAASUVORK5CYII=">
+                                        </div>
+                                    </div>
+                                    <div class="prod-option-info">
+                                        <div class="prod-option-count">
+                                            <div class="item-box">
+                                                <div class="item-box-left">
+                                                    <label class="label-cbx">
+                                                        <div>대여 조건 및 주의상항</div>
+                                                    </label>
+                                                </div>
+                                                <div id="checkbox_value">수수료 및 차액</div>
+                                            </div>
+                                        </div>
+                                        <div class="prod-option-info-bottom">
+                                            <div class="precautions-con">
+                                                <div class="precautions-con-detail">
+                                                    <div class="precautions-con-detail-textBox"></div>
+                                                    <div>항공권을 구매하고 받으신 e-티켓 확인증(Itinerary & Receipt)에서 운임규정을 확인할 수
+                                                        있습니다.
+                                                    </div>
+                                                </div>
+                                                <div class="precautions-con-detail">
+                                                    <div class="precautions-con-detail-textBox"></div>
+                                                    <div>홈페이지(PC, 모바일), 앱에서 구매한 항공권의 경우, 예약 상세조회 후, [예약 변경]을 진행하시면 변경
+                                                        규정, 운임 차액 등을 확인할 수 있습니다.
+                                                    </div>
+                                                </div>
+                                                <div class="precautions-con-detail">
+                                                    <div class="precautions-con-detail-textBox"></div>
+                                                    <div>대한항공 서비스센터 , 시내/공항지점에서 항공권 구매 또는 변경하는 경우 항공권 서비스 수수료가 부과됩니다.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+                                <section>
+                                    <div class="prod-option">
+                                        <div>예약부도위약금</div>
+                                        <div class="sub-title">위약금 안내<img class="icon"
+                                                                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAJFBMVEVHcEyqqqqrq6uvr6+qqqqqqqqqqqqqqqqnp6erq6uqqqqqqqqzWaB7AAAAC3RSTlMAwDYQ0lvtgCBwl9YmRtEAAAFZSURBVDjLjVQrT8RAEJ4ruXAEc6drmhMIMCd4hCARiDWXIBDnOENSc8kdqqaKBEeCQWNrWNhrge/PsW3Z3eljCSOa6Xwzs/Mm+qWdm4lQk/sZtegxREXypSk/g6V1Qx4DV9MomG6AnCEjAXldsychVGqBA6i54Ycxbi0PPDnzPcBoLZxObb+tmYB7rV+MKuYBl83Yj3FXpSzyVrqjWJWSXby3y3CElf6e2pCGkQ1sqb9JbhQzabi40A5NcEQA2QRSbTa2espwA+1+YPOkw1dXizFdoNMbnQI+aKGoh8SWkqIP0NLQpXf+7FKUHMi+OSA+7V8oHaAIb33APvxA7HPFHueA9APZVx+gE2QlYYAuCSuiA8oisrI7oCw7a5QDykax1jqgbC0l9nUXoCga4xM0x8c7cHpE086I+oZ6+fcaeBens2r5vHc5BbNvrfPMcwBW/zkZ/iPTPUs/xvenV5RBgJoAAAAASUVORK5CYII=">
+                                        </div>
+                                    </div>
+                                    <div class="driver-info-section-condition">
+                                        <div class="driver-info-section-condition-top">
+                                            <div class="driver-info-section-condition-top-title">
+                                                <img class="driver-info-section-condition-top-title-img"
+                                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAS1BMVEVHcEwbYOUYX+oZX+YUXvIbYOQcYOQcX+QcX+QbYOUcX+QcYOMdX+QcYOUcX+UdYOT///+Mr/Le6fwvbebx9v6qxPW5zvepw/VjkuzHPR81AAAAD3RSTlMAPhUdCoLV9+xsv7ijWJB/IO4VAAABM0lEQVRIx61WW2KDMAzL+w2hhLa7/0kXBu1asMHppk+QsGMLO4xtobhOwVhrQtJcsRNIH21+gY1eHtBF/8ZeNVogdKUB+iIBM5MmozBAXtzlAzi+5ft8DNu18Sv8Wz72XGBfspIuE+CeJ1cmk2Ae1dWZCL32d59QuU/DveyTWkL0+0/dhoorEkIAFZr5wwRUSiAtwAQ/zYiZnlKOtaZQz8ptGq4F6p5iXW4CpzfhUafUJkgsgM8v4/gFvggM9FGpRRphPzHQqJe5rLBl2wWmTWDgQ+OCAJcVFyTI3EeCHrYGLuhg86GCaj7Q3qggIj8QKph/INkiEMiUwby0zBnlqG5dxwxlEm/mcaDxw+9uow1j8fm4Jx1ju4JOYlj/16V4snbB3a48EsR59T9Xhw8uJ5TrzzdrLmlnuJbGaAAAAABJRU5ErkJggg=="/>
+                                                <div>적용대상</div>
+                                            </div>
+                                            <div style="font-weight: 400;">면제 대상 : 좌석을 점유하지 않는 유아 항공권</div>
+                                        </div>
+                                        <div class="driver-info-section-condition-bottom">항공편 출발 이전까지 사전 예약 취소 없이 탑승하지
+                                            않거나, 탑승 수속 후 탑승하지 않으면 부과
+                                        </div>
+                                    </div>
+                                    <div class="insurance-title">변경 및 환불</div>
+                                    <div class="insurance-title-explanation">
+                                        항공권 변경과 환불에 필요한 정보를 안내해 드립니다.
+                                    </div>
+                                    <div class="insurance-locations">
+                                        <div class="inland locationClick">징수 금액 (편도 기준)</div>
+                                        <div class="jeju">위약금 금액</div>
+                                    </div>
+                                    <table class="insurance-info showTale">
+                                        <thead>
+                                        <tr>
+                                            <th>운임</th>
+                                            <th>예약 등급</th>
+                                            <th>금액</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>프레스티지
+                                            </td>
+                                            <td class="trPaint">C
+                                            </td>
+                                            <td class="trPaint">3,000원
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>정상 운임</td>
+                                            <td>Y</td>
+                                            <td>3,000원</td>
+                                        </tr>
+                                        <tr>
+                                            <td>할인 운임</td>
+                                            <td>B, M, S, H, E</td>
+                                            <td>5,000원</td>
+                                        </tr>
+                                        <tr>
+                                            <td>특가 운임</td>
+                                            <td>K, L, U, W, V, Q, T</td>
+                                            <td>7,000원</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="insurance-info">
+                                        <thead>
+                                        <tr>
+                                            <th>노선</th>
+                                            <th>예약부도위약금</th>
+                                            <th>출국장 입장 후 탑승 취소</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>국내선</td>
+                                            <td class="trPaint">KRW 8,000(편도)</td>
+                                            <td class="trPaint">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>단거리</td>
+                                            <td>KRW 50,000</td>
+                                            <td>KRW 250,000
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>중거리</td>
+                                            <td>KRW 70,000</td>
+                                            <td>KRW 270,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>장거리</td>
+                                            <td>KRW 120,000</td>
+                                            <td>KRW 320,000</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="insurance-info-bottom">
+                                        <div>* 미사용 공항세는 수수료 없이 전액 환불됩니다.</div>
+                                        <div>* 보너스 항공권 및 단체 항공권은 별도 규정이 적용됩니다.</div>
+                                    </div>
+                                    <div class="insurance-info-detailBox">
+                                        <div class="insurance-info-detail">
+                                            <div class="insurance-info-detail-textBox">
+                                                <div class="policy-text">상세 정책</div>
+                                            </div>
+                                            <img alt="이미지" class="arrow false"
+                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC">
+                                        </div>
+                                        <!--                                        폈을때 나오는 텍스트-->
+                                        <div class="hiddenContent policy-detail">
+                                            <div>
+                                                <p>출발일 기준 91일 이전 환불하는 최초 한국 출발 국제선 항공권의 환불 수수료 (해외 출발 항공권 제외)</p>
+                                                <p style="margin: 0px;">고객 사정에 의한 환불이 아닌 경우 (예: 항공편 운항 취소 등)</p>
+                                                <div style="padding: 0px 18px; margin-top: 3px;">
+                                                                                            <span>구매 후 24시간 이내 전체 미사용 상태로 환불 접수된 항공권 (대한항공 서비스센터, 홈페이지 및 지점 발권에 한함)
+                                                                                            </span>
+                                                    <br>
+                                                    <span>- 대물 보상 : 상대 차량이나 시설 등의 물적 재산 피해 보상 (상대 휴차료/대차료 포함)
+                                                                                            </span>
+                                                    <br>
+                                                    <span>- 국제선 환불 위약금과 수수료는 이중 부과되지 않습니다.</span>
+                                                    <br>
+                                                    <span>- 미사용 공항세는 수수료 없이 전액 환불됩니다.</span>
+                                                    <p style="margin-bottom: 0px; margin-top: 10px;">*보너스 항공권 및 단체 항공권은
+                                                        별도 규정이 적용됩니다.</p>
+                                                    <p>*운임이 결합된 항공권의 경우 높은 환불 위약금이 적용됩니다.</p>
+                                                    <p>*한국 외 출발 항공권의 경우 구입처에 따라 환불위약금 규정이 다를 수 있으므로, 해당 구입처로 문의하여 주시기
+                                                        바랍니다.</p>
+                                                    <p>*구매 항공권의 운임 규정에 따라 부과됩니다.</p>
+                                                    <p>*최초 한국 출발 환불 위약금</p>
+                                                    <p>*예약 등급, 노선 및 구매 항공권의 운임 규정에 따라 환불 접수 시점 별 차등 부과됩니다..</p>
+                                                </div>
+                                                <p>신청 방법 및 기한</p>
+                                                <p>*항공권 환불은 구매처를 통해 진행하셔야 합니다.</p>
+                                                <p>*항공권 구매처가 대한항공이 아닌 경우 (타 항공사 또는 여행사 등)에는 해당 구매처에 문의해 주시기 바랍니다..</p>
+                                                <p>*뉴질랜드 출발 항공권의 환불은 뉴질랜드 이민법(Immigration Act)에 의해 제한됩니다.
+                                                    유효한 서류 확인 후 또는 뉴질랜드를 출발하는 다른 항공권이 있는 경우에만 환불할 수 있습니다.
+                                                    자세한 사항은 지점 및 서비스 센터로 확인 해 주세요.</p>
+                                                <p>*환불 신청 기한은 항공권 유효기간 만료로부터 30일 이내입니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="precautions">
+                                    <div class="precautions-con">
+                                        <div class="precautions-con-title">필요 서류</div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>항공권 명의인에 의해 환불 신청 가능하며 대리인을 통한 환불 요청시에는 아래와 같이 추가 서류가 필요합니다.</div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>e-티켓 확인증(Itinerary & Receipt)</div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>항공권 명의인(탑승객): 본인 신분증</div>
+                                        </div>
+                                        <div class="precautions-con-detail" style="flex-flow: wrap;">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>법정 대리인 신분증</div>
+                                            <div>가족 증빙 서류</div>
+                                        </div>
+                                    </div>
+                                    <div class="precautions-con">
+                                        <div class="precautions-con-title">추가 서류</div>
+                                        <div class="precautions-con-detail">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>대리인이 신청하는 경우</th>
+                                                    <th>본인확인 가능한 신분증(탑승객&신청인)</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>운항 60분 이내 (최상위 조건)</td>
+                                                    <td>없음 (100% 환불)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>운항 72시간 전까지</td>
+                                                    <td>없음 (100% 환불)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>운항 72시간 ~ 운항 시간까지</td>
+                                                    <td>30% (70% 환불)</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div>
+                                                <div class="precautions-con-detail-textBox"></div>
+                                            </div>
+                                            <div>자동차 제어 또는 운행 기록이 없더라도 대여 예정 시간 이후에는 예약취소가 불가합니다.</div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div>
+                                                <div class="precautions-con-detail-textBox"></div>
+                                            </div>
+                                            <div>
+                                                구매 후 24시간 이내에 전체 미사용 상태로 환불 접수된 항공권(대한항공 서비스센터, 홈페이지 및 지점 발권 항공권에 한함)
+                                            </div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div>
+                                                <div class="precautions-con-detail-textBox"></div>
+                                            </div>
+                                            <div>미사용 공항세는 수수료 없이 전액 환불됩니다.</div>
+                                        </div>
+                                    </div>
+                                    <div class="precautions-con">
+                                        <div class="precautions-con-title">국제선 환불 위약금 및 수수료</div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div style="flex: 1 1 0%;">구매 항공권의 운임 규정에 따라 부과됩니다.
+                                            </div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>최초 한국 출발 환불 위약금</div>
+                                        </div>
+                                        <div class="precautions-con-detail">
+                                            <div class="precautions-con-detail-textBox"></div>
+                                            <div>예약 등급, 노선 및 구매 항공권의 운임 규정에 따라 환불 접수 시점 별 차등 부과됩니다.</div>
+                                        </div>
+                                        <div class="shuttle-button">
+                                            <div>셔틀 이용 방법</div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="paymentInfoWrap">
+                    <section class="payment-info-section">
+                        <!--                        가격정보 불러와서 합하고 표시하기-->
+                        <div class="payment-info-title">
+                            항공 운송료
+                        </div>
+                        <div class="payment-info-price" style="flex-direction: column; padding: 20px 0px;">
+                            <div class="priceWarp">
+                                <div>운임</div>
+                                <div th:text="${ticket.ticFee} + 원">156,480</div>
+                            </div>
+                        </div>
+                        <div class="totalPrice">
+                            <div class="totalPrice-text">
+                                <div class="emphasis"> 총액</div>
+                                <!--                                총액 가져오기-->
+                                <div class="emphasis-price" th:text="${ticket.ticFee} + 원">20,130원</div>
+                            </div>
+                        </div>
+                        <!--                        컨트롤러 임시 호출 결제시 totalPrice데이터 넘기기-->
+                        <button class="_button_default_1vx5o_3 StyledPaymentButton-bNriOy jLwBLr hover:cursor-not-allowed"
+                                disabled=true id="btnKakaoPay">
+                            결제하기
+                        </button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:include="/footer.html :: footer"></footer>
+<div class="modal">
+    <div class="ant-modal-root">
+        <div class="ant-modal-mask"></div>
+        <div tabindex="-1" class="ant-modal-wrap">
+            <div role="dialog" aria-modal="true" class="ant-modal contentBox">
+                <div tabindex="0" aria-hidden="true"
+                     style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+                <div class="ant-modal-content">
+                    <div class="ant-modal-body" style="padding: 30px;">
+                        <div class="content">
+                            <div style="height: 610px; overflow: scroll; padding-right: 10px;">
+                                <div class="pcca">
+
+                                    <div role="dialog" id="dialog-ticket" class="dialog rates -full -active"
+                                         aria-labelledby="dialog-title-KE-132131445" aria-hidden="false">
+                                        <div role="document" class="dialog__contents" tabindex="-1" data-focus="true">
+                                            <h2 id="dialog-title-KE-132131445" class="h1">항공권 서비스수수료</h2>
+                                            <p class="p">대한항공 서비스센터 및 시내/공항 지점에서 항공권, 마일리지를 이용한 보너스 및 좌석승급 항공권을 구매 또는
+                                                변경하시는 경우 항공권 당 서비스수수료가 부과됩니다.</p>
+                                            <div class="dialog__aligner">
+                                                <div class="table-top-title-a parbase">
+                                                    <div class="mb2016">
+                                                        <div class="ttta">
+                                                            <div class="table -y ">
+                                                                <table>
+                                                                    <table class="insurance-info-modalTable">
+                                                                        <thead class="table__thead">
+                                                                        <tr class="thead__tr">
+                                                                            <th scope="col" class="thead__th">구입처</th>
+
+                                                                            <th scope="col" class="thead__th">서비스수수료
+                                                                            </th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody class="table__tbody">
+                                                                        <tr class="tbody__tr">
+                                                                            <th scope="row" class="tbody__td _center">
+                                                                                서비스센터, 시내/공항 지점
+                                                                            </th>
+                                                                            <td class="tbody__td _center">
+                                                                                국제선 : 3만원 / USD 30 / JPY 3,000 / CNY 200
+                                                                                / EUR 30 등
+                                                                                <br>국내선 : 5천원 (VAT 포함)
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tbody__tr">
+                                                                            <th scope="row" class="tbody__td _center">
+                                                                                홈페이지/모바일/챗봇
+                                                                            </th>
+                                                                            <td class="tbody__td _center">
+                                                                                무료
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </table>
+                                                            </div>
+                                                            <p class="caption">최초 구매 시에는 출발지 통화 기준으로 부과되며, 그 외 통화는 USD를
+                                                                기준으로 환산 적용됩니다.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="contents-title-additional-link parbase">
+                                                    <div class="mb4020">
+                                                        <div class="ctal">
+                                                            <h3 class="h3">면제 대상</h3>
+                                                            <ul class="list -disc">
+                                                                <li class="list__item">일등석 및 프레스티지 클래스 항공권 (단, 국내선 프레스티지
+                                                                    좌석 승급 항공권은 제외)
+                                                                </li>
+                                                                <li class="list__item">비동반소아 및 좌석을 점유하지 않는 만 2세 미만 유아
+                                                                    항공권
+                                                                </li>
+                                                                <li class="list__item">첼로 등 악기/귀중품의 운반 및 고객 편의를 위해 본인 외
+                                                                    추가 항공권 발행 또는 재발행 시
+                                                                </li>
+                                                                <li class="list__item">고객 사정에 의한 재발행이 아닐 경우 (항공사 스케쥴 변경,
+                                                                    불가항력에 따른 항공편 운항 취소 등)
+                                                                </li>
+                                                                <li class="list__item">선불 항공권 및 크레딧 바우처를 사용한 항공권 구매 시
+                                                                </li>
+                                                                <li class="list__item">세계일주 보너스 항공권
+                                                                </li>
+                                                            </ul>
+                                                            <p class="caption">항공권 서비스수수료는 환불이 불가합니다.</p>
+                                                            <p class="caption">소아할인은 적용되지 않습니다.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 30px; position: relative; bottom: 0px; padding-right: 10px;">
+                            <button type="button" class="modal-btn _button_default_1vx5o_3"
+                                    style="height: 50px; flex: 1 1 0%; font-size: 16px;">확인
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div tabindex="0" aria-hidden="true" cursor="pointer"
+                     style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <input type="hidden" id="ticketId" th:value="${ticket.ticTicketId}">
+    <input type="hidden" id="departureDate" th:value="${ticket.ticFlightDepartureDate}">
+    <input type="hidden" id="arrivalDate" th:value="${ticket.ticFlightArrivalDate}">
+    <input type="hidden" id="seatGrade" th:value="${ticket.ticSeatGrade}">
+    <input type="hidden" id="airlineName" th:value="${ticket.ticAirlineName}">
+    <input type="hidden" id="fromLocation" th:value="${ticket.ticFromLocation}">
+    <input type="hidden" id="totalPrice" th:value="${ticket.ticFee}">
+    <input type="hidden" id="toLocation" th:value="${ticket.ticToLocation}">
+    <input type="hidden" id="vehicleId" th:value="${ticket.ticVihicleId}">
+    <input type="hidden" id="ticketLogo" th:value="${ticket.ticAirlineLogo}">
+    <input type="hidden" id="userId" th:value="${user.userId}">
+    <input type="hidden" id="userName" th:value="${user.userName}">
+    <input type="hidden" id="userPhone" th:value="${user.userPhone}">
+    <input type="hidden" id="userGender" th:value="${user.userGender}">
+
+</div>
+</body>
+</html>

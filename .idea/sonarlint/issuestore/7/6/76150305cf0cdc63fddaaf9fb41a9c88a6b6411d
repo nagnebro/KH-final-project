@@ -1,0 +1,5 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(úûš£ıÿÿÿÿ
+h	java:S116"SRename this field "tax_free" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëöêç
+[
+java:S1659"EDeclare "tax_free" and all following declarations on a separate line.(ëöêç

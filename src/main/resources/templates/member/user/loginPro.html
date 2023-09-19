@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <style>
+        #swal2-title{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var check = [[${check}]]
+        var msg = [[${msg}]];
+        var type = ''
+
+
+        /*]]>*/
+        if(check){
+
+            console.log('hh')
+
+            Swal.fire(`${msg}`, '', 'success').then((result) => {
+
+                location.href = "/"
+
+            })
+        }else{
+
+
+            Swal.fire(`${msg}`, '', 'info').then((result) => {
+
+                location.href = "/"
+
+            })
+
+        }
+
+
+
+    </script>
+
+
+
+</body>
+</html>

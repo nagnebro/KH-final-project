@@ -1,0 +1,112 @@
+<container>
+
+
+
+
+    <!-- sweet alert script 전체 페이지 적용(헤더있는 페이지만)-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!--    &lt;!&ndash; sweet alert css 전체 페이지 적용&ndash;&gt;-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <link href="/css/chat.css" rel="stylesheet" type="text/css">
+    <script defer src="/js/chat.js" type="text/javascript"></script>
+
+
+
+    <!-- 폰트적용 CDN, 스타일은  headerAmdSideNav에 설정-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+
+    <div class="chat-modal" style="display:none">
+        <div class="no-show">
+            <div class="ant-chat-modal-root">
+                <div class="ant-chat-modal-mask"></div>
+                <div tabindex="-1" class="ant-chat-modal-wrap">
+                    <div role="dialog" aria-modal="true" class="ant-chat-modal contentBox">
+                        <div class="ant-chat-modal-content">
+                            <div class="chat-modal-top-box">
+                                <div><!-- 뒤로가기 아이콘 -->
+                                    <svg id="back-chat-btn" class="disappear" xmlns="http://www.w3.org/2000/svg"
+                                         height="1em" viewBox="0 0 448 512">
+                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>svg {
+                                            fill: #b4b4b4
+                                        }</style>
+                                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                                    </svg>
+                                </div>
+
+                                <div> <!-- 나가기 아이콘 -->
+                                    <svg id="quit-chat-btn" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                         viewBox="0 0 384 512">
+                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>svg {
+                                            fill: #e3e3e3
+                                        }</style>
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ant-chat-modal-body">
+
+                                <div class = "chat-room-info disappear" id="chat-room-info"></div>
+                                <div class="chat-modal-content" id = "chat-modal-content">
+
+
+                                </div>
+
+                                <div class="chat-modal-bottom"
+                                     style="display: flex; justify-content: space-between; margin-top: 30px; position: relative; bottom: 0px;">
+                                </div>
+                                <div class="text-area-box">
+                                    <textarea type="text" class="message-input disappear" id="message-input"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div tabindex="0" aria-hidden="true" cursor="pointer"
+                             style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <header>
+        <div class="header_main">
+            <div class="header_logo"><img src="/img/member/logo.png" onclick="window.location.href='/manager/home'">
+            </div>
+            <div class="header_icons"><p class="micon">
+                <img id = "img-icon" src="/file/profile_image/manager.png" alt="">
+            </p>
+                <i class="fa-2xl fa-solid fa-arrow-right-from-bracket"
+                   style="color: #bebebe;"
+                   onclick="window.location.href= '/manager/logout'"></i>
+
+            </div>
+        </div>
+    </header>
+    <sidenav>
+        <div class="side_nav">
+            <div class="side_nav_content snc_home" onclick="window.location.href='/manager/home'">홈</div>
+            <div class="side_nav_content snc_user" onclick="window.location.href='/manager/user'">유저 정보 관리</div>
+            <div class="side_nav_content snc_accompany" onclick="window.location.href='/manager/accompany'">동행 글 관리
+            </div>
+            <div class="side_nav_content snc_plan" onclick="window.location.href='/manager/plan'">일정 글 관리</div>
+            <div class="side_nav_content snc_qna" onclick="window.location.href='/manager/qna'">문의글 관리</div>
+            <div class="side_nav_content snc_flight" onclick="window.location.href='/manager/flight'">항공권 결제 관리</div>
+            <div class="side_nav_content snc_rentcar" onclick="window.location.href='/manager/rentcar'">렌트카 결제 관리</div>
+        </div>
+    </sidenav>
+    <link rel="stylesheet" href="/css/member/manager/headerAndSideNav.css">
+    <script src="/jq/jquery-3.7.0.min.js"></script>
+    <script src="/js/member/manager/manager_header.js"></script>
+
+
+    <button id="live-chat">채팅 문의 확인하기 💬</button>
+
+</container>

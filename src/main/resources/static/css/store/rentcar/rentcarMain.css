@@ -1,0 +1,905 @@
+/*동영상 밑 서치바 부분*/
+.search_bar_wrap {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    z-index: 900;
+}
+
+.search_bar_wrap_container {
+    width: 100%;
+    background-color: #fff;
+}
+
+.search_bar_wrap_container_line {
+    overflow: hidden;
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1140px;
+}
+
+
+.search_bar_box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    z-index: 200;
+    background-color: transparent;
+    -webkit-transform: translateY(-60%);
+    transform: translateY(-60%);
+    position: absolute;
+}
+
+.search_bar_input_box {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 20px;
+    height: 90px;
+    margin-top: 34.5px;
+}
+
+.search_input_container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px #0000000d;
+    width: 100%;
+    display: grid;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.search_input_round {
+    width: 100%;
+    height: 46px;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+}
+
+.search_input_round_date {
+    width: 50%;
+    height: 46px;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+}
+
+
+.search_input_detail {
+    border: none;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 600;
+    height: 22px;
+    margin-top: 10px;
+    text-overflow: ellipsis;
+}
+
+
+.input_title_and_detail {
+    padding: 0 30px;
+    height: 50px;
+}
+
+
+.input_title {
+    display: flex;
+    align-items: center;
+}
+
+
+.input_title_text {
+    margin-left: 4px;
+    font-size: 15px;
+}
+
+
+.input_grid_number {
+    height: 50px;
+    width: 1px;
+    background-color: #eaeaea;
+}
+
+
+.input_title_icon {
+    width: 16px;
+    height: 16px;
+}
+
+.input_birth_wrap {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 22px;
+    margin-top: 10px;
+}
+
+
+.rentcar_search_button {
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: #00b8ff;
+    color: #fff;
+    outline: none;
+}
+
+.main_search_button {
+    width: 110px;
+    background-color: #00b8ff;
+    border-radius: 20px;
+    font-size: 20px;
+    box-shadow: 1px 1px 5px #00000026;
+}
+
+
+.search_result {
+    height: 550px;
+    overflow: hidden;
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1140px;
+
+}
+
+.search_result_grid {
+    grid-template-columns: minmax(0px, 234px) minmax(0px, 774px); /*minmax(0px, 134px) minmax(0px, 640px); */
+    box-shadow: 0 -1px 4px #0000001a;
+    margin-top: 30px;
+    padding-top: 20px;
+    display: grid;
+    width: 1010px;
+    border-left: 1px solid #eaeaea;
+}
+
+.result_left_text {
+    padding: 30px 0 30px 30px;
+    font-size: 24px;
+    font-weight: 700;
+    height: 500px;
+}
+
+.result_select_area {
+    border: 1px #eaeaea solid;
+    color: black;
+    font-size: 14px;
+    border-bottom: none;
+    width: 133px;
+    padding-top: 10px;
+}
+
+.result_select_area_text {
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+
+.result_location_map {
+    width: 774px;
+    position: relative;
+    overflow: scroll;
+
+}
+
+
+.result_map_text_box {
+    width: 774px;
+    height: 145px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 15px 20px;
+    z-index: 200;
+}
+
+.result_map_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.result_map_name {
+
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #f9f9f9;
+    padding: 0 15px;
+    height: 50px;
+    width: 80%;
+
+
+}
+
+.result_map_btn_wrap {
+
+
+}
+
+.location_search_btn {
+
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 8px;
+
+}
+
+
+.result_map_icon {
+
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+
+}
+
+
+.input_map_address {
+
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    background-color: #f9f9f9;
+    padding: 0;
+}
+
+.result_location_btn {
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+
+.result_location_btn_style {
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: #00b8ff;
+    color: #fff;
+    outline: none;
+}
+
+
+/*메인에서 렌트 날짜 선정 칸*/
+
+.search_result_date_grid {
+    grid-template-columns: minmax(0px, 234px) minmax(0px, 494px) minmax(0px, 278px);
+    box-shadow: 0 -1px 4px #0000001a;
+    margin-top: 30px;
+    padding-top: 20px;
+    display: grid;
+    width: 1010px;
+    border-left: 1px solid #eaeaea;
+}
+
+.result_left_text .date {
+
+    padding: 30px 0 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+    height: 500px;
+    width: 230px;
+}
+
+.rent_date_picker {
+    /*.mbsc-datepicker-tab-wrapper */
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+
+    width: 494px;
+    padding: 1px 0 50px;
+    border: 1px #eaeaea solid;
+
+}
+
+.calender_wrap {
+
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
+
+}
+
+.calendar {
+    height: 100%;
+    max-width: 100%;
+    padding-bottom: 0.5em;
+    box-sizing: border-box;
+    display: block;
+
+}
+
+
+.result_select_date {
+    width: 494px;
+    padding: 1px 0 50px;
+    border: 1px #eaeaea solid;
+}
+
+.result_date_time {
+    padding: 30px 20px 0;
+    width: 278px;
+}
+
+.rent_date_text {
+    color: black;
+    font-size: 14px;
+}
+
+.rent_date_check {
+    height: 28.5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+.rent_time_check {
+    align-items: center;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    color: #282828;
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+.rent_date_button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+
+
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: #00b8ff;
+    color: #fff;
+    outline: none;
+}
+
+.rent_info_text {
+    height: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #eb270e;
+    font-size: 12px;
+}
+
+.qna_category_button {
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: #00ce7c;
+    color: #fff;
+    outline: none;
+}
+
+
+/*어디로 떠나세요?*/
+
+.main_contents_area {
+    margin: 0px auto;
+    width: auto;
+    max-width: 1140px;
+}
+
+.main_contents_area_wrap {
+    background-color: rgb(255, 255, 255);
+    /* min-height: calc(100vh - 246px); */
+    height: auto;
+    padding: 0px 0px 60px;
+}
+
+
+.leave_warp {
+    width: 100%;
+    max-width: 1140px;
+}
+
+/*어디떠나세요 지역 컨테이너*/
+.leave_warp .leave_banner_container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 30px 0px 100px;
+}
+
+.leave_warp .leave_banner_container_item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 50%;
+    isolation: isolate;
+    cursor: pointer;
+    /*하단부분은 표시하기 위해 일부러 설정함. 이미지를 넣으면 잘 것으로 예상*/
+    width: 160px;
+    height: 160px;
+
+}
+
+
+.leave_warp .leave_banner_container_item .area_name {
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    line-height: 160px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: rgba(33, 37, 41, 0.8) 0px 4px 7px;
+}
+
+.leave_banner_container_item img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.0);
+
+    transition: transform .5s;
+
+
+}
+
+.leave_banner_container_item:hover {
+
+    transform: scale(1.2); /* 이미지 확대 */
+    transition: transform 0.8s; /*  시간 설정  */
+
+}
+
+
+
+/*픽 렌터카*/
+
+
+.pick_wrap {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    min-height: 706px;
+    padding: 100px 0px;
+    background: rgb(32, 34, 38);
+    color: white;
+    overflow-x: scroll;
+}
+
+
+.pick_container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_titles_text {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+
+.main_details_text {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.pick_wrap .pick_content {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+
+.pick_wrap .pick_content_left {
+    width: 506px;
+}
+
+.pick_wrap .pick_content_left_rank {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 70px;
+    color: #00b8ff;
+    font-weight: 600;
+}
+
+.pick_wrap .pick_content_left_name {
+    font-weight: 700;
+    font-size: 26px;
+    color: white;
+    margin-left: 30px;
+}
+
+
+.pick_wrap .pick_content_left_img {
+    width: 470.8px;
+    height: 284px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.pick_wrap .pick_content_right {
+    width: 460px;
+}
+
+.pick_wrap .pick_content_right_card {
+    min-height: 80px;
+    background: rgb(44, 48, 57);
+    border-radius: 10px;
+    padding: 9px 30px 9px 33.5px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.pick_wrap .pick_content_right_card:not(:nth-last-child(1)) {
+    margin-bottom: 20px;
+}
+
+.pick_wrap .pick_content_right_card_left {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.pick_wrap .pick_content_right_card_rank {
+    margin-right: 20px;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.pick_wrap .pick_content_right_card_img {
+    width: 102.8px;
+    height: 62px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+/*trust 소다*/
+
+
+.trust_wrap .trust_banner_container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.trust_wrap .trust_banner_container_item {
+    width: 330px;
+    min-height: 282px;
+    background-color: lightgray;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.trust_wrap .trust_banner_container-_item_title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.trust_wrap .trust_banner_container_item_content_text {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.trust_wrap .trust_banner_container_item_content_img {
+    width: 68px;
+    height: 86px;
+    margin-top: 45px;
+}
+
+
+/*이벤트 배너*/
+
+
+.event_wrap {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.event_wrap .event_banner_item {
+    width: 365px;
+    height: 165px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+/*QnA*/
+
+.qna_wrap {
+    margin-top: 80px;
+}
+
+
+.qna_wrap .qna_tab_container {
+    margin: 60px 0px 40px;
+}
+
+.qna_wrap .qna_tab_button.active {
+    color: white;
+    background: #00B8FF;
+    border: none;
+}
+
+
+.qna_wrap .qna_tab_button {
+    color: black;
+    background: white;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 0px 15px;
+    height: 38px;
+    font-size: 16px;
+}
+
+.qna_wrap .qna_content_container:nth-child(4) {
+    border-top: 1px solid lightgray;
+}
+
+
+.qna_wrap .qna_content_container {
+    border-bottom: 1px solid lightgray;
+}
+
+
+.qna_title_wrap {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    padding: 23px 0px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.qna_open_icon {
+    width: 14px;
+    height: 14px;
+    /* transform: rotate(0);
+     -webkit-transform: rotate(0deg);
+     transition: -webkit-transform .5s;
+     transition: transform .5s;
+     transition: transform .5s,-webkit-transform .5s;
+     -webkit-transition: transform .5s; */
+}
+
+.qna_line {
+    /* transition: max-height .5s; */
+    /* -webkit-transition: max-height .5s; */
+}
+
+.qna_wrap .qna_content_accordion {
+
+    padding: 20px 15px;
+    background-color: rgba(217,212,214,0.47);
+    /* line-height: 1.43; */
+    font-size: 14px;
+    height: 100%;
+    display: none;
+}
+
+/*데이트피커 css */
+.ui-datepicker {
+    width: 490px;
+    /*height: 440px;*/
+    margin: 5px auto 0;
+    font: 9pt Arial, sans-serif;
+    background: white;
+}
+
+.ui-datepicker a {
+    text-decoration: none;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    background-color: white;
+}
+
+.ui-datepicker-header {
+    border-color: #ccc;
+    padding: 17px 0;
+    position: relative;
+    z-index: 1;
+    /* will-change: opacity;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ui-datepicker-header > :nth-child(2) {
+    order: 1
+}
+
+.ui-datepicker-title {
+    border-color: #ccc;
+    padding: 17px 0;
+    margin: 0 auto;
+    background-color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 23px;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    padding: 17px 0;
+
+    cursor: pointer;
+
+    fill: currentColor;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.ui-datepicker-prev {
+    float: left;
+    background-position: center -30px;
+}
+
+.ui-datepicker-prev span {
+    font-size: 20px;
+
+}
+
+.ui-datepicker-next span {
+    font-size: 20px;
+
+}
+
+
+.ui-datepicker-next {
+    float: right;
+    background-position: center 0px;
+}
+
+.ui-datepicker thead {
+
+    background-color: white;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#f1f1f1', GradientType=0);
+    border-bottom: 1px solid #bbb;
+}
+
+.ui-datepicker th {
+    width: 62px;
+    height: 37px;
+    text-transform: uppercase;
+    font-size: 12pt;
+    padding: 5px 0;
+    color: #666666;
+    text-shadow: 1px 0px 0px #fff;
+    filter: dropshadow(color=#fff, offx=1, offy=0);
+    text-align: center;
+}
+
+.ui-datepicker tbody td {
+    height: 45px;
+    padding: 0;
+    text-align: center;
+}
+
+.ui-datepicker tbody td:last-child {
+    border-right: 0px;
+}
+
+.ui-datepicker tbody tr {
+    border-bottom: 1px solid #bbb;
+}
+
+.ui-datepicker tbody tr:last-child {
+    border-bottom: 0px;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #666666;
+
+    filter: dropshadow(color=#fff, offx=1, offy=1);
+}
+
+.ui-datepicker-calendar .ui-state-default {
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dedede', GradientType=0);
+
+}
+
+.ui-datepicker-calendar .ui-state-hover {
+    background: none;
+}
+
+.ui-datepicker-calendar .ui-state-active {
+    background: #00b8ff;
+    color: white;
+    font-weight: normal;
+    filter: dropshadow(color=#4d7a85, offx=0, offy=1);
+    border: none;
+    border-radius: 20px;
+    position: relative;
+    margin: -1px;
+}
+
+.ui-datepicker-unselectable .ui-state-default {
+    background: #f4f4f4;
+    color: #b4b3b3;
+    border-radius: 50px;
+}
+
+.ui-datepicker-calendar td:first-child .ui-state-active {
+    width: 29px;
+    margin-left: 0;
+}
+
+.ui-datepicker-calendar td:last-child .ui-state-active {
+    width: 29px;
+    margin-right: 0;
+}
+
+.ui-datepicker-calendar tr:last-child .ui-state-active {
+    height: 29px;
+    margin-bottom: 0;
+}
+
+.ui-datepicker-range .ui-state-active,
+.ui-datepicker-range .ui-state-default {
+    background: #ffe4b5;
+    border: 1px solid #ffa500;
+    color: #ff4500;
+}

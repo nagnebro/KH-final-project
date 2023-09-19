@@ -1,0 +1,22 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(úûš£ıÿÿÿÿ
+u	java:S116"[Rename this field "partner_order_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì»¨ùÿÿÿÿ
+t	java:S116"ZRename this field "partner_user_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì»¨ùÿÿÿÿ
+x	java:S116"^Rename this field "payment_method_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì»¨ùÿÿÿÿ
+i	java:S116"TRename this field "card_info" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ˆû
+i	java:S116"TRename this field "item_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ¶ÖÈ
+i	java:S116"TRename this field "item_code" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ¶ÖÈ
+t	java:S116"ZRename this field "tax_free_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ô»Õüÿÿÿÿ
+o	java:S116"URename this field "vat_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ô»Õüÿÿÿÿ
+j	java:S116"URename this field "created_at" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬©×Á
+k	java:S116"VRename this field "approved_at" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬©×Á
+[
+java:S1659"@Declare "tid" and all following declarations on a separate line.(¨ìÌ°øÿÿÿÿ
+g
+java:S1659"LDeclare "partner_user_id" and all following declarations on a separate line.(ì»¨ùÿÿÿÿ
+\
+java:S1659"FDeclare "item_code" and all following declarations on a separate line.(Ğ¶ÖÈ
+g
+java:S1659"LDeclare "tax_free_amount" and all following declarations on a separate line.(˜ô»Õüÿÿÿÿ
+?
+java:S1659")Declare "approved_at" on a separate line.(¬©×Á

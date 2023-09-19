@@ -1,0 +1,22 @@
+
+f	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ë¨…
+f	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©®ßŒ
+k	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ƒÑµùÿÿÿÿ
+n
+java:S3753"XAdd a call to "setComplete()" on the SessionStatus object in a "@RequestMapping" method.(Ñõ¼
+[
+java:S4684""@Replace this persistent entity with a simple POJO or DTO object.(©ƒÑµùÿÿÿÿ
+g
+java:S1128"LRemove this unused import 'com.kh.myproject.member.user.model.dto.UserForm'.(Ì¾ùßÿÿÿÿÿ
+c
+java:S1128"HRemove this unused import 'org.hibernate.annotations.CreationTimestamp'.(¡œøÀúÿÿÿÿ
+J
+java:S1128"5Remove this unused import 'javax.persistence.Column'.(ìûæH
+M
+java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ
+O
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ

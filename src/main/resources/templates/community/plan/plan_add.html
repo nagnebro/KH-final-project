@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>plan_add.html</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/community/plan/plan_add.css">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="next">
+    <header th:include="header.html :: header"></header>
+    <div class="m">
+        <!-- 메인부분 코드 작성 -->
+
+        <div style="flex: 1 1 0%;">
+            <div class="_next">
+                <div class="container">
+                    <!--카카오맵-->
+                    <div class="kakaomaps">
+                        <div class="kakaomaps_in">
+                            <div class="map_wrap">
+                                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--content-->
+                    <div class="content">
+
+                        <div id="menu_wrap" class="bg_white">
+                            <div class="option">
+                                <div>
+                                    <form onsubmit="searchPlaces(); return false;">
+                                        <!--키워드 :--> <input type="text" value="제주도" id="keyword" size="15"
+                                                            placeholder="가고싶은 장소를 검색해보세요!">
+                                        <button type="submit" id="search_btn">검색하기</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                            <ul id="placesList"></ul>
+
+                            <div id="pagination"></div>
+                        </div>
+
+
+                        <div class="add_place_btnarea">
+                            <button color="#fff" class="add_place_btn">장소 추가하기</button>
+                        </div>
+
+                    </div> <!-- 여기까지 content 한 세트-->
+                    <input type="hidden" id="day" th:value="${day}"/>
+                    <input type="hidden" id="type" th:value="${type}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:include="/footer.html :: footer"></footer>
+</div>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="/js/header.js"></script>
+
+<!-- 카카오맵 js -->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769&libraries=services,clusterer,drawing"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script src="/js/community/plan/plan_add.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Community</title>
+    <link rel="shortcut icon" href="/img/member/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/member/community_main.css">
+    <script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+</head>
+<body>
+
+<div class="next">
+    <header th:include="/header.html :: header"></header>
+    <div class="m">
+        <div class="carousel no-js">
+            <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" space-between="30"
+                              centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+                <swiper-slide ><a href="/store/rentcar/rentcarMain">
+                    <img src="/img/store/tour/tourmain/main_01.png"
+                         alt="" id="visual1">
+                </a></swiper-slide>
+                <swiper-slide><a href="https://www.101hongfestival.co.kr/" target="_blank">
+                    <div class="visual_wrap" id="visual2">
+                        <img class="visual_title" src="/img/store/tour/tourmain/main_text.png">
+                    </div>
+                </a>
+                </swiper-slide>
+                <swiper-slide>
+                    <a href="https://seodong.iksan.go.kr/main/inner.php?sMenu=main#" target="_blank">
+                        <div class="visual_wrap" id="visual3">
+                            <div class="visual_text">
+                                <strong>2023 익산 서동축제<br>
+                                    용감하고 씩씩한 서동!
+                                </strong>
+                                <br><br><br><br><br><br><br><br>
+                                <span>
+                                    축제 기간 : 2023년 9월 15일(금) ~ 9월 17일(일)
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+
+        <div class="main_content1">
+
+
+            <div class="main_content1_text">
+                <div class="mct_1">동행을 찾고 있어요</div>
+                <div class="mct_2" onclick="window.location.href='/community/accompany'">여행 동행 더보러 가기</div>
+            </div>
+
+            <div class="main_content1_box">
+
+                <th:block th:each="acclist,index : ${accompanyList}" th:if="${index.index} < 8">
+                    <div class="test1"
+                         th:onclick="'location.href=\'/community/accompany/detail?ac_num='+ @{${acclist.ac_num}} + '\''">
+                        <!-- 여기가 한 박스-->
+                        <!--                                        <a th:href="@{/board/view/{id}(id = ${board.id})}">글 상세보기</a>-->
+                        <div class="test1_content1">
+                            <div class="user_profile">
+                                <div class="user_img">
+
+
+                                    <div class="mypage"><img th:src="'/file/profile_image/' + ${acclist.user?.userImg}"
+                                                             alt="" class="profile_img"
+                                                             onclick="window.location.href='/member/mypage'"></div>
+
+                                </div>
+                                <div class="user_info">
+                                    <div class="user_nick"
+                                         th:text="${#strings.setSplit(acclist.user.userId,'@')[0]}"></div>
+                                    <!--                                    <div class="user_agender" th:text="${user.userDate}">20대</div>-->
+
+                                    <div class="user_info_bottom">
+                                        <div class="ml_4"
+                                             th:text="${#strings.substring(((2023 - (acclist.user.userDate?.getYear()+1900))),0,1)}+'0대'"></div>
+                                        <div class="user_agender" th:if="${acclist.user?.userGender == 'M'}">남자</div>
+                                        <div class="user_agender" th:if="${acclist.user?.userGender == 'F'}">여자</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="box_shortline"></div>
+                            <div class="trip_profile">
+                                <div class="trip_info">
+                                    <div class="trip_len"><i class="fa-solid fa-calendar" style="color: #9a9a9a;"></i>여행기간
+                                    </div>
+
+                                    <!--                                    <div class="ml_4" th:text="${#dates.format(user.userDate, 'yyyy년 MM월 dd일')}"></div>-->
+
+
+                                    <div class="trip_info_bottom">
+                                        <!-- 총 여행일자 -->
+                                        <!--                                    <div class ="total_date" th:text = "${accompany.ac_enddate - accompany.ac_startdate}"></div>-->
+
+                                        <div class="trip_date"
+                                             th:text="${acclist.ac_enddate.getTime()/1000/60/60/24 - acclist.ac_startdate.getTime()/1000/60/60/24} + '일 '"></div>
+                                        &nbsp
+                                        <div class="trip_date"
+                                             th:text="${#dates.format(acclist.ac_startdate,'MM-dd')}"></div>
+                                        ~
+                                        <div class="trip_date"
+                                             th:text="${#dates.format(acclist.ac_enddate, 'MM-dd')}"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="test1_content2">
+                            <img th:src="'/file/accompany_image/'+${acclist.ac_picture}">
+                            <div class="img_area" th:text="${acclist.ac_region}">
+                                <i class="fa-solid fa-location-dot"
+                                   style="color: #008ff6;"></i></div>
+                        </div>
+                        <div class="test1_content3">
+                            <div class="text_title" th:text="${acclist.ac_title}">
+
+                            </div>
+                            <div class="text_sub" th:text="${acclist.ac_text}">
+                                </br>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </th:block>
+
+            </div>
+
+        </div>
+
+        <div class="main_content2">
+            <div class="main_content1_text">
+                <div class="mct_1">여행 일정 게시판</div>
+                <div class="mct_2" onclick="window.location.href='/community/plan'">여행 일정 구경하기</div>
+            </div>
+
+            <div class="main_content1_box">
+
+
+                <th:block th:each="plan, planStat : ${planList}">
+                    <!--                    <th:block th:each="plandetail : ${planDetailList}" th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}">-->
+                    <div class="test2">
+                        <div class="test2_content1">
+                            <div class="user_profile">
+                                <div class="user_img">
+                                    <img th:src="'/file/profile_image/' + ${plan.user.userImg}">
+                                </div>
+                                <div class="user_info">
+                                    <div class="user_nick2" th:text="${plan.user.userName}"></div>
+                                    <div class="user_agender2" th:if="${plan.user.userGender == 'M' }">20대 · 남성</div>
+                                    <!-- 나이대 표시 필요 -->
+                                    <div class="user_agender2" th:if="${plan.user.userGender == 'F' }">20대 · 여성</div>
+                                    <!-- 나이대 표시 필요 -->
+                                </div>
+                            </div>
+                            <div class="box_shortline"></div>
+                            <div class="trip_profile">
+                                <div class="trip_info">
+                                    <div class="trip_len"><i class="fa-solid fa-calendar" style="color: #9a9a9a;"></i>여행기간
+                                    </div>
+                                    <div class="trip_date" th:text="${plan.pbStartDate} + ' - ' + ${plan.pbEndDate}">
+                                        <!--9일 · 10/16-10/24--> </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map">
+
+                            <div th:id="${planStat.count}"
+                                 style="width:100%;height:100%;position:relative;overflow:hidden;">
+
+                                <script type="text/javascript"
+                                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769"></script>
+
+                                <script th:inline="javascript">
+
+
+                                    console.log([[${planStat.count}]]);
+                                    /*[# th:each="plandetail : ${planDetailList}"
+                                               th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}"]*/
+                                    var mapContainer = document.getElementById(`[[${planStat.count}]]`); // 지도를 표시할 div
+
+                                    var pbdXc =  /*[[${plandetail.pbdX}]]*/;
+                                    var pbdYc =  /*[[${plandetail.pbdY}]]*/;
+                                    mapOption = {
+                                        center: new kakao.maps.LatLng(pbdYc, pbdXc), // 지도의 중심좌표
+                                        level: 10 // 지도의 확대 레벨
+
+                                    };
+                                    /*[/]*/
+
+
+                                    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                                    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                                    var markers = [];
+
+                                    var positions = [];
+                                    /*[# th:each="plandetail : ${planDetailList}"
+                                              th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}"]*/
+                                    var pbdX =  /*[[${plandetail.pbdX}]]*/;
+                                    console.log("x = " + pbdX);
+                                    var pbdY =  /*[[${plandetail.pbdY}]]*/;
+                                    console.log("y = " + pbdY);
+
+                                    var position = new kakao.maps.LatLng(pbdY, pbdX);
+                                    console.log(position);
+
+                                    positions.push(position);
+                                    /*[/]*/
+
+                                    console.log(positions);
+                                    // positions 배열에 있는 좌표로 마커를 추가합니다
+                                    for (var i = 0; i < positions.length; i++) {
+                                        addMarker(positions[i]);
+                                    }
+
+                                    // 마커를 생성하고 지도위에 표시하는 함수입니다
+                                    function addMarker(position) {
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        markers.push(marker);
+                                    }
+
+                                    // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+                                    function setMarkers(map) {
+                                        for (var i = 0; i < markers.length; i++) {
+                                            markers[i].setMap(map);
+                                        }
+                                    }
+
+                                    // map.relayout(); // map 사이즈가 달라졌을 경우 지도를 다시 로드해줘야 지도가 불러와지고 좌표쪽으로 포커스가 간다.
+
+
+                                </script>
+
+                            </div>
+
+
+                        </div>
+
+                        <div>
+                            <div class="test2_area">
+                                <div class="area_text" th:if="${plan.pbRegion == '1'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i>서울
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '2'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i>경기도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '3'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 강원도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '4'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 충청도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '5'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 경상도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '6'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 전라도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '7'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 제주도
+                                </div>
+
+                                <div class="area_text" th:if="${plan.pbRegion == '8'}">
+                                    <i class="fa-solid fa-location-dot" style="color: #008ff6;"></i> 기타
+                                </div>
+                            </div>
+                            <div class="nick_plan" th:text="${plan.pbTitle}">
+                                <!--nickname님의 여행일정--> </div>
+
+                        </div>
+
+                        <!--Day버튼-->
+                        <div class="test2_day_buttonarea">
+                            <div class="test2_day_buttonarea_2">
+                                <div class="test2_day_buttons">
+                                    <th:block th:each="maxDay : ${maxDays}" th:if="${planStat.index == maxDayStat.index}">
+                                        <th:block th:each="num : ${#numbers.sequence(1, maxDay)}">
+                                            <button class="test2_day_button_selected" th:if="${numStat.index == 0}">
+                                        <span class="sc-20343a87-3 cZhUke"><svg width="15" height="15"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                color="#fff" size="15"><path
+                                                fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.5143 12.7857C22.1619 12.462 22.1619 11.538 21.5143 11.2143L3.2715 2.09388C2.68733 1.80182 2 2.22657 2 2.87962L2 9.63235C2 10.1346 2.3726 10.559 2.87068 10.624L13.4216 12L2.87068 13.376C2.3726 13.441 2 13.8654 2 14.3676L2 21.1204C2 21.7734 2.68733 22.1982 3.2715 21.9061L21.5143 12.7857Z"
+                                                fill="#fff"></path></svg></span>
+                                                <span th:text="Day+${numStat.count}" class="day_text"></span>
+                                            </button>
+                                            <button class="test2_day_button_unselected" th:if="${numStat.index != 0}" th:text="Day+${numStat.count}">
+                                                Day2
+                                            </button>
+                                        </th:block>
+                                    </th:block>
+                                </div>
+                                <!--<button class="test2_day_button_unselected">
+                                    Day3
+                                </button>
+                                <button class="test2_day_button_unselected">
+                                    Day4
+                                </button>-->
+                            </div>
+                        </div>
+                        <!--여행지 -->
+                        <div type="main" class="test2_place">
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <th:block th:each="plandetail : ${planDetailList}"
+                                              th:if="${plan.pbNum} == ${plandetail.planBoard.pbNum}">
+
+                                        <div class="swiper-slide">
+                                            <span th:text="${plandetail.pbdPlaceName}"><!--장소1--></span><br>
+                                            <span th:text="${plandetail.pbdCategoryGroupName}"><!--장소카테고리--></span>
+                                        </div>
+                                    </th:block>
+
+                                </div>
+<!--                                <div class="swiper-button-next"></div>-->
+<!--                                <div class="swiper-button-prev"></div>-->
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+
+                        </div>
+
+                        <!--일정담기, 일정상세보기 버튼-->
+                        <div class="test2_button">
+                            <button class="test2_btn1"id="test2_btn1" href="javascript:;">
+                            <span class="test2_btn1_span">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd"
+                                                                              d="M16.5303 13.5303C16.2374 13.8232 15.7625 13.8232 15.4696 13.5303L10.6967 8.75736C10.4038 8.46447 10.4038 7.98959 10.6967 7.6967C10.9896 7.40381 11.4644 7.40381 11.7573 7.6967L15.25 11.1893L15.25 2C15.25 1.58579 15.5858 1.25 16 1.25C16.4142 1.25 16.75 1.58579 16.75 2L16.75 11.1893L20.2426 7.6967C20.5355 7.40381 21.0104 7.40381 21.3033 7.6967C21.5962 7.98959 21.5962 8.46447 21.3033 8.75736L16.5303 13.5303Z"
+                                                                              fill="#00CE7C"></path><path
+                                        fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.99988 2H6C3.79086 2 2 3.79086 2 6V18C2 20.2091 3.79086 22 6 22H18C20.2091 22 22 20.2091 22 18V6C22 5.98946 22 5.97894 21.9999 5.96842V14.0001H20.5V18C20.5 19.3807 19.3807 20.5 18 20.5H6C4.61929 20.5 3.5 19.3807 3.5 18V6C3.5 4.61929 4.61929 3.5 6 3.5H7.99988V2Z"
+                                        fill="#00CE7C"></path></svg>
+                            </span>
+                                "일정 공유"
+                            </button>
+                            <button class="test2_btn2"
+                                    th:onclick="|location.href='@{/community/plan/detail(pbNum=${plan.pbNum})}'|">
+                            <span class="test2_btn2_span">
+                                <svg width="18" height="18" viewBox="0 0 17 17" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"><circle cx="2.16667" cy="4.16667" r="0.666667"
+                                                                                fill="#00CE7C"></circle><circle
+                                        cx="2.16667" cy="8.83317" r="0.666667" fill="#00CE7C"></circle><circle
+                                        cx="2.16667" cy="13.4997" r="0.666667" fill="#00CE7C"></circle><rect x="4.16675"
+                                                                                                             y="3.5"
+                                                                                                             width="10.6667"
+                                                                                                             height="1"
+                                                                                                             rx="0.5"
+                                                                                                             fill="#00CE7C"></rect><rect
+                                        x="4.16675" y="8.1665" width="10.6667" height="1" rx="0.5"
+                                        fill="#00CE7C"></rect><rect x="4.16675" y="12.833" width="10.6667" height="1"
+                                                                    rx="0.5" fill="#00CE7C"></rect></svg>
+                            </span>
+                                "일정 상세보기"
+                            </button>
+                        </div>
+                    </div>
+
+                </th:block>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<footer th:include="/footer.html :: footer"></footer>
+
+
+<!-- Swiper JS -->
+
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="/js/header.js"></script>
+
+<!--카카오 일정공유-->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+        integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+        crossorigin="anonymous"></script>
+<script>
+    Kakao.init('c012367ce50cd5f2e93814481c3cf769'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    const shareBtnList = document.querySelectorAll('.test2_btn1');
+
+    for(var i = 0; i < shareBtnList.length; i++){
+
+        Kakao.Share.createDefaultButton({
+            container: shareBtnList[i],
+            objectType: 'location',
+            address: '경기 성남시 분당구 판교역로 166 3층',
+            addressTitle: '카카오 판교아지트 카페톡',
+            content: {
+                title: '여행시그널에서 메시지를 보냈어요.',
+                description: '일정 공유가 도착했습니다.',
+                imageUrl:
+                // 'http://k.kakaocdn.net/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
+                    'https://img.freepik.com/free-photo/turquoise-water-palm-trees-luxury-vacation-destination-generated-by-ai_188544-10577.jpg?w=1380&t=st=1694499044~exp=1694499644~hmac=a9ee32e6274414ead23c50d35798e84e8738dcb8f94d3e1688919e61f6f9ac1c',
+                link: {
+                    // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com',
+                },
+            },
+            social: {
+                likeCount: 286,
+                commentCount: 45,
+                sharedCount: 845,
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: 'https://developers.kakao.com',
+                        webUrl: 'https://developers.kakao.com',
+                    },
+                },
+            ],
+        });
+    }
+
+</script>
+
+<!--카카오 맵-->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c012367ce50cd5f2e93814481c3cf769&libraries=services,clusterer,drawing"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+
+
+</body>
+</html>

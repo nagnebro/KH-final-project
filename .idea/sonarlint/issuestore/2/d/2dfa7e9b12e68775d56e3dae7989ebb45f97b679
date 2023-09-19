@@ -1,0 +1,26 @@
+
+r	java:S117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã“À„ıÿÿÿÿ8ğÅßË§1
+r	java:S117?"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’û¸ãüÿÿÿÿ8ñÅßË§1
+m	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾”ø8óÅßË§1
+m	java:S117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú‘Êœ8ôÅßË§1
+n	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º¼£»8öÅßË§1
+n
+java:S3753"XAdd a call to "setComplete()" on the SessionStatus object in a "@RequestMapping" method.(Ñõ¼
+]	java:S125."<This block of commented-out lines of code should be removed.(Ş¿³Èúÿÿÿÿ8ÆßË§1
+G	java:S106D"+Replace this use of System.out by a logger.(ºƒí¬8ÆßË§1
+G	java:S106E"+Replace this use of System.out by a logger.(Ì€´8ÆßË§1
+G	java:S106F"+Replace this use of System.out by a logger.(·â¤8ÆßË§1
+L	java:S106G"+Replace this use of System.out by a logger.(«úÊÎıÿÿÿÿ8ÆßË§1
+W	java:S125V"<This block of commented-out lines of code should be removed.(õ‘’J8‘ÆßË§1
+L	java:S106c"+Replace this use of System.out by a logger.(ÀÌ•æûÿÿÿÿ8“ÆßË§1
+L	java:S106d"+Replace this use of System.out by a logger.(„½¶ùÿÿÿÿ8“ÆßË§1
+l
+java:S1128"ORemove this unused import 'com.kh.myproject.store.rentcar.model.RentcarComDTO'.(›ŞºØ8™ÆßË§1
+k
+java:S1128"IRemove this unused import 'org.springframework.web.servlet.ModelAndView'.(Ç¨ÿäûÿÿÿÿ8™ÆßË§1
+Q
+java:S1128"4Remove this unused import 'javax.websocket.Session'.(şÀÁ‡8™ÆßË§1
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8™ÆßË§1
+K
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8™ÆßË§1

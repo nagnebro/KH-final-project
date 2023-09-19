@@ -1,0 +1,105 @@
+<footer>
+
+
+    <link href="/css/chat.css" rel="stylesheet" type="text/css">
+    <script defer src="/js/chat.js" type="text/javascript"></script>
+
+
+    <div class="chat-modal" style="display:none">
+        <div class="no-show">
+            <div class="ant-chat-modal-root">
+                <div class="ant-chat-modal-mask"></div>
+                <div tabindex="-1" class="ant-chat-modal-wrap">
+                    <div role="dialog" aria-modal="true" class="ant-chat-modal">
+                        <div class="ant-chat-modal-content">
+                            <div class="chat-modal-top-box">
+                                <div><!-- 뒤로가기 아이콘 -->
+                                    <svg id="back-chat-btn" class="disappear" xmlns="http://www.w3.org/2000/svg"
+                                         height="1em" viewBox="0 0 448 512">
+                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>svg {
+                                            fill: #b4b4b4
+                                        }</style>
+                                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                                    </svg>
+                                </div>
+
+                                <div> <!-- 나가기 아이콘 -->
+                                    <svg id="quit-chat-btn" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                         viewBox="0 0 384 512">
+                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>svg {
+                                            fill: #e3e3e3
+                                        }</style>
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ant-chat-modal-body">
+
+                                        <div class = "chat-room-info disappear" id="chat-room-info"></div>
+                                    <div class="chat-modal-content" id = "chat-modal-content">
+
+
+                                    </div>
+
+                                <div class="chat-modal-bottom"
+                                     style="display: flex; justify-content: space-between; margin-top: 30px; position: relative; bottom: 0px;">
+                                </div>
+                                <div class="text-area-box">
+                                    <textarea type="text" class="message-input disappear" id="message-input"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div tabindex="0" aria-hidden="true" cursor="pointer"
+                             style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ft_main">
+        <h1 class="ft_content1">
+            <img class="ft_img" src="/img/member/logo.png"></h1>
+        <div class="ft_content2">
+            <div>고객센터 0505-0505-0505</div>
+            <p><em>실시간 채팅상담</em> 매일 9:00 ~ 24:00</p>
+            <p><em>친절 유선 상담</em> 평일 10:00 ~ 19:00 (12:00 - 13:00 제외)</p>
+        </div>
+        <div class="ft_content3">
+            <span><em>주식회사 </em>KH정보교육원</span>
+            <span><em>대표</em>홍길동</span>
+            <span><em>개인정보보호책임자</em>***</span>
+            <span><em>사업자등록번호</em>555-55-5555</span>
+            <span><em>관광사업등록번호</em>1235468-4845-7865456</span>
+            <span><em>통신판매업 신고번호</em>2022-서울강남-0643</span>
+            <address>서울 강남 KH정보교육원</address>
+        </div>
+        <div class="ft_content4">
+            <p class="fc4_1">개인정보 처리방침</p>
+            <div>
+                <p class="fc4_2">이용약관</p>
+                <p class="fc4_2">위치기반서비스 이용약관</p>
+                <p class="fc4_2">취소 및 환불정책</p>
+                <p class="fc4_2">파트너 입점</p>
+            </div>
+
+
+        </div>
+        <div class="ft_content5">
+            <p class="sc-cfcbad3f-14 kBPXtm">자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다.<br>여행시그널은 통신판매중개자이며 통신판매 당사자가 아닙니다. 상품정보
+                및 거래에 관한 책임은 판매자에게 있습니다.<br> Copyright © 여행시그널 Inc. All Rights Reserved.</p>
+        </div>
+    </div>
+
+
+    <!-- chatting 창을 띄우기 위한 버튼과 모달창 -->
+
+
+    <button id="live-chat">채팅창 열기 💬</button>
+
+
+</footer>
+

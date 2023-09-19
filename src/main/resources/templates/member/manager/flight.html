@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지 메인</title>
+    <link rel="stylesheet" href="/css/member/manager/headerAndSideNav.css">
+    <link rel="stylesheet" href="/css/member/manager/flight.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+    <style>
+        body {
+
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<container th:include="/member/manager/manager_header.html :: container"></container>
+
+
+<div class="section">
+
+
+    <div class="main_content">
+
+
+        <h2 class="content_title">
+            결제 항공권 목록
+        </h2>
+        <div class="usertable" id="usertable">
+
+            <div class="usertable-inner">
+
+                <div class="user-search-bar">
+                    <div>
+                        <select name="user-search-option" id="user-search-option">
+                            <option value="all">전체</option>
+                            <option value="user_name">예약자</option>
+                            <option value="ticAirlineName">항공사</option>
+
+                        </select>
+                    </div>
+
+                    <div class="user-search-input">
+
+
+                        <span><i class="fa-solid fa-magnifying-glass" id="search-icon"></i></span>
+                        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="field-bar">
+                <div>
+                    티켓 아이디
+                </div>
+
+                <div>예약자</div>
+                <div>항공사</div>
+                <div>출발 공항</div>
+                <div>도착 공항</div>
+                <div>결제액</div>
+                <div>삭제</div>
+            </div>
+            <div th:if="${noTicket}" class="no-user">
+
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg {
+                            fill: #ff0000
+                        }</style>
+                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                    </svg>
+                </div>
+                <div class="warning-title">결제된 항공 티켓 정보가 없습니다.</div>
+            </div>
+
+
+            <th:block th:if="${!noTicket}">
+                <div class="userinfo-box" th:each="ticket : ${ticketList}">
+
+
+                    <div th:text="${ticket.ticTicketId}"></div>
+                    <div th:text="${ticket.user.userName}"></div>
+                    <div th:text="${ticket.ticAirlineName}"></div>
+                    <div th:text="${ticket.ticFromLocation}"></div>
+                    <div th:text="${ticket.ticToLocation}"></div>
+                    <div th:text="${ticket.ticFee}"></div>
+
+
+                    <div class="ml_4 ticket-del-btn" th:id="${ticket.ticTicketId}" onclick="delticket(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                            <style>svg {
+                                fill: #ff0000
+                            }</style>
+                            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                        </svg>
+                    </div>
+
+                </div>
+            </th:block>
+
+
+            <th:block th:if="${!noTicket}">
+                <div class="page-block">
+
+                    <th:block th:if="${pageEndNo > 10}">
+                        <div class="page-number-block" id="first-page"
+                             onclick="pageChange(this)"
+                             th:id="${1}"> 처음
+
+                        </div>
+                        <div class="page-number-block" id="left-page"
+                             onclick="pageChange(this)"
+                             th:id="${pageStartNo}-1"> 이전
+                        </div>
+                    </th:block>
+
+
+                    <div th:each="page : ${#numbers.sequence(pageStartNo, pageEndNo)}"
+                         class="page-number-block page-select-btn"
+                         onclick="pageChange(this)"
+                         th:id="${page}">
+
+
+                        <p th:text="${page}"></p>
+                    </div>
+
+                    <th:block th:if="${lastPageCheck}">
+                        <div onclick="pageChange(this)"
+                             th:id="${pageEndNo+1}"
+                             class="page-number-block" id="right-page"> 다음
+                        </div>
+                        <div onclick="pageChange(this)"
+                             th:id="${totalPage}"
+                             class="page-number-block" id="end-page"> 끝
+                        </div>
+                    </th:block>
+
+
+                    <input type="hidden" id="search_word" th:value="${search_word}">
+                    <input type="hidden" id="search_option" th:value="${search_option}">
+                    <input hidden id="selected-btn" th:value="${pageNo}">
+                    <!--
+
+                    th:block으로 생겨나는 페이지 번호는 10의 단위로 끊어줘야한다.
+                    // 전체 데이터의 개수, 즉 sesle count로 글의 개수를 가지고 온다.
+                    // 글의 개수와 10을 나눈다. 그럼 총 나와야하는데 페이지 수가 나온다.
+                    // 이때 나머지가 있으면 한페이지를 추가해준다.
+                    // 이렇게 나온 페이지 수 만큼 ~ 밑에 pageno를 보여주면 안된다
+                    // 10씩 잘라내야하는데 이거는 일단 1~10까지 뽑는다.
+                    // 그리고 다음버튼을 누를 경우 pageno는 현재 머무르고 있는 페이지에 10을 더해준다.
+                    // 마찬가지로 다음버튼을 눌렀을떄도 현재 페이지 넘버의 값을 구한다.
+                    // 현재 페이지가 3이라면 10페이지 미만이므로 11페이지로 이동시킨다.
+                    // 즉 현재 페이지에 10을 나누고 그 몫에다가 1을 더하고 * 10 + 1을 한 페이지로 넘어간다는 것이다.
+                    // 물론 예외적인 상황이 너무나 많다.
+
+
+
+                    pageno을 쿼리스트링으로 받고 그 값을 매개변수로 쿼리를 셀렉트해서 그 만큼만 데이터를 가지고 온다.
+
+
+
+
+                    -->
+
+                </div>
+            </th:block>
+
+
+
+        </div>
+
+
+        <!-- 검색어가 있을떄의 페이징 처리 -->
+
+
+    </div>
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/member/manager/flight.js"></script>
+</body>
+</html>

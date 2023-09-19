@@ -1,0 +1,246 @@
+
+
+/*여기서부터 유저 테이블 관련 css*/
+.usertable{
+
+    width: 100%;
+    border : none;
+    background-color : white;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+.usertable-inner{
+
+    width: 100%;
+    padding :  20px 20px;
+    box-sizing: border-box;
+}
+
+.userinfo-box{
+
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    font-size : 14px;
+    box-sizing: border-box;
+
+
+}
+
+.field-bar{
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom : 1px solid darkgrey;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size : 14px;
+
+
+}
+
+.userinfo-box div:nth-child(1), .field-bar div:nth-child(1){
+
+    width: 150px;
+    text-align: left;
+}
+
+.userinfo-box div:nth-child(2), .field-bar div:nth-child(2){
+
+    width: 100px;
+    text-align: left;
+}
+
+
+.userinfo-box div:nth-child(3), .field-bar div:nth-child(3){
+
+    width: 100px;
+    text-align: left;
+}
+
+
+.userinfo-box div:nth-child(4), .field-bar div:nth-child(4){
+
+    width: 100px;
+    text-align: left;
+}
+
+
+.userinfo-box div:nth-child(5), .field-bar div:nth-child(5){
+
+    width: 100px;
+    text-align: left;
+}
+
+.userinfo-box div:nth-child(6), .field-bar div:nth-child(6){
+
+    width: 100px;
+    text-align: center;
+}
+
+.userinfo-box div:nth-child(7), .field-bar div:nth-child(7){
+
+    width: 50px;
+    text-align: center;
+}
+
+
+.userinfo-box:hover{
+
+    background-color: whitesmoke;
+
+}
+
+.user-del-btn:hover{
+
+    cursor : pointer;
+}
+
+
+/* 모달창 속성
+
+ */
+
+#swal2-title{
+
+    font-size : 14px;
+}
+
+.swal2-styled{ /* Swal modal창 */
+
+    background-color: white !important;
+    color : black !important;
+    border : 2px solid #2B96EC !important;
+    box-shadow: none !important;
+}
+
+
+.page-block{
+
+    display : flex;
+    width: 60%;
+    margin : 0 auto;
+    height: 40px;
+    justify-content: center;
+    padding : 20px 20px;
+}
+
+.page-number-block{
+
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border : 1px solid #2B96EC;
+    border-radius: 2px;
+    text-align: center;
+    display :flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color : #2B96EC;
+
+}
+
+.page-number-block:hover{
+
+    cursor:pointer;
+}
+
+.page-number-block:active{
+
+    background-color:#E7F4FD;
+    cursor: pointer;
+}
+
+.user-search-bar{
+
+    display : flex;
+    justify-content: right;
+    align-items: center;
+    height: 30px;
+
+}
+
+.user-search-bar div:nth-child(1){
+
+    height: 30px;
+}
+
+.user-search-bar div:nth-child(1) select{
+    height: 30px;
+    border-radius: 5px;
+}
+
+.user-search-bar input{
+
+
+    box-sizing: border-box;
+    padding : 9px;
+    width: 170px;
+    height: 26px;
+    outline: none;
+    font-size: 13px;
+    border : none;
+    position: relative;
+
+
+}
+.user-search-input{
+
+
+    border : 1px solid black;
+    border-radius: 5px;
+    display : flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    box-sizing: border-box;
+    height: 30px;
+    margin-left : 10px;
+    margin-right: 10px;
+
+}
+
+.user-search-input div:nth-child(1){
+    display : flex;
+    align-items: center;
+}
+.user-search-input i{
+    margin-left: 10px;
+}
+
+
+.no-user{
+
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+}
+
+.no-user div:nth-child(1) svg{ /*아이콘*/
+
+    height: 50px;
+
+}
+.no-user div{
+    text-align: center;
+    width: 300px;
+    font-size : 20px
+}
+
+.warning-title{
+
+    padding-bottom: 20px;
+}
+
+
+.ticket-del-btn:hover{
+    cursor: pointer;
+}

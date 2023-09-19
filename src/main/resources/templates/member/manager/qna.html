@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의글 관리</title>
+    <link rel="stylesheet" href="/css/member/manager/headerAndSideNav.css">
+    <link rel="stylesheet" href="/css/member/manager/qna.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+    <style>
+        body {
+
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+
+<container th:include = "/member/manager/manager_header.html :: container"></container>
+
+
+
+<div class="section">
+    <div class="main_content">
+        <h2 class="content_title">
+            문의 글 관리
+        </h2>
+
+        <div class="usertable" id="usertable">
+
+            <div class="usertable-inner">
+                <div class="user-search-bar">
+                    <div>
+                        <select name="user-search-option" id="user-search-option">
+                            <option value="all">전체</option>
+                            <option value="user_id">유저 아이디</option>
+                            <option value="user_name">유저 이름</option>
+
+                        </select>
+                    </div>
+
+                    <div class="user-search-input">
+
+
+                        <span><i class="fa-solid fa-magnifying-glass" id="search-icon"></i></span>
+                        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="field-bar">
+                <div>글 번호</div>
+                <div>제목</div>
+                <div>작성자</div>
+                <div>작성일</div>
+                <div>문의 내용</div>
+                <div>답변</div>
+                <div>수정/답변</div>
+                <div>삭제</div>
+            </div>
+            <div th:if="${#lists.isEmpty(qnaList)}" class="no-user">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg {
+                            fill: #ff0000
+                        }</style>
+                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                    </svg>
+                </div>
+                <div class="warning-title">작성된 문의 글이 없습니다.</div>
+            </div>
+
+
+            <th:block th:if="${!#lists.isEmpty(qnaList)}">
+                <div class="userinfo-box" th:each="qna : ${qnaList}">
+
+
+                    <div th:text="${qna.qnaNumber}"></div>
+                    <div th:text="${qna.qnaTitle}"></div>
+                    <div th:text="${qna.qnaWriter}"></div>
+                    <div th:text="${#temporals.format(qna.qnaDate, 'yyyy년 MM월 dd일')}"></div>
+                    <div th:text="${qna.qnaContent}"></div>
+
+<!--                    <div class="ml_4" th:text="$"></div>-->
+                    <div th:text="${qna.qnaAnswer}"></div>
+
+                    <th:block th:if="${qna.qnaAnswer != null}">
+                        <div><button th:id="${qna.qnaNumber}" onclick="answerBtn(this)" class="answer_btn">수정하기</button></div>
+                    </th:block>
+                    <th:block th:if="${qna.qnaAnswer == null}">
+                        <div><button th:id="${qna.qnaNumber}" onclick="answerBtn(this)" class="answer_btn">답변하기</button></div>
+                    </th:block>
+                    <div>
+                        <div class="ml_4 user-del-btn" th:id="${qna.qnaNumber}" onclick="delQna(this)">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                <style>svg {
+                                    fill: #ff0000
+                                }</style>
+                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                            </svg>
+                        </div>
+                </div>
+                </div>
+            </th:block>
+
+
+            <th:block th:if="${!noList}">
+                <div class="page-block">
+
+                    <th:block th:if="${pageEndNo > 10}">
+                        <div class="page-number-block" id="first-page"
+                             onclick="pageChange(this)"
+                             th:id="${1}"> 처음
+
+                        </div>
+                        <div class="page-number-block" id="left-page"
+                             onclick="pageChange(this)"
+                             th:id="${pageStartNo}-1"> 이전
+                        </div>
+                    </th:block>
+
+
+                    <div th:each="page : ${#numbers.sequence(pageStartNo, pageEndNo)}"
+                         class="page-number-block page-select-btn"
+                         onclick="pageChange(this)"
+                         th:id="${page}">
+
+
+                        <p th:text="${page}"></p>
+                    </div>
+
+                    <th:block th:if="${lastPageCheck}">
+                        <div onclick="pageChange(this)"
+                             th:id="${pageEndNo+1}"
+                             class="page-number-block" id="right-page"> 다음
+                        </div>
+                        <div onclick="pageChange(this)"
+                             th:id="${totalPage}"
+                             class="page-number-block" id="end-page"> 끝
+                        </div>
+                    </th:block>
+
+
+                    <input type="hidden" id="search_option" th:value="${search_option}">
+                    <input type="hidden" id="search_word" th:value="${search_word}">
+                    <input hidden id="selected-btn" th:value="${pageNo}">
+
+
+                </div>
+            </th:block>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="https://kit.fontawesome.com/fb453b869a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/member/manager/qna.js"></script>
+</body>
+
+
+</html>
