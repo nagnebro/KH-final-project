@@ -46,30 +46,30 @@
 
 ## 동행 게시글 및 채팅 화면
 <br>
-<img width="2254" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/3b779199-7f2a-4769-8f1d-026c0d28c343">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/3b779199-7f2a-4769-8f1d-026c0d28c343">
 
 ## 여행지 둘러보기
 <br>
-<img width="1579" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/0d01808a-87a2-4770-b1ee-14a889c14e62">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/0d01808a-87a2-4770-b1ee-14a889c14e62">
 
 ## 항공권 검색 / 결제
 <br>
-<img width="1442" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/201588bd-0e69-4ba6-8b15-72aafa69cb02">
-<img width="1458" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/a7fd417a-ba6d-4307-b04e-aa174aabe2a8">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/201588bd-0e69-4ba6-8b15-72aafa69cb02">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/a7fd417a-ba6d-4307-b04e-aa174aabe2a8">
 
 ## 렌트카 검색 / 결제
 <br>
-<img width="1554" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/96c99170-64e8-479e-8e11-9c8c115aa019">
-<img width="1488" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/9641acdf-d5d1-47bd-92cd-f6b7a75e1a6c">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/96c99170-64e8-479e-8e11-9c8c115aa019">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/9641acdf-d5d1-47bd-92cd-f6b7a75e1a6c">
 
 ## 마이페이지
 <br>
-<img width="1527" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/9af27794-30e9-4f84-8ba1-9d01239f7fba">
-<img width="1628" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/13163245-2b2e-4514-9af9-60433add2fd0">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/9af27794-30e9-4f84-8ba1-9d01239f7fba">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/13163245-2b2e-4514-9af9-60433add2fd0">
 
 ## 관리자페이지
 <br>
-<img width="2440" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/ae744911-1378-47cc-a1fc-94abc99e86d0">
+<img width="1000" alt="image" src="https://github.com/nagnebro/KH-final-project/assets/109835887/ae744911-1378-47cc-a1fc-94abc99e86d0">
 
 
 
