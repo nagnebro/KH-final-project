@@ -4,7 +4,7 @@
   프레임워크 : spring boot 2.7.6 <br>
   빌드 툴 : gradle <br>
   템플릿 엔진 : thymeleaf <br>
-  JDK : Java 11
+  JDK : Java 11 <br>
   DataBase : MySQL 8.0.33 (spring data JPA) <br>
   형상관리 : gitHub <br>
   이외 : HTML, CSS, JavaScript, Ajax, jquery <br>
